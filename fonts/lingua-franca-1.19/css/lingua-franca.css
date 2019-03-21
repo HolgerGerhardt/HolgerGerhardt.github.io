@@ -13,6 +13,7 @@
   font-weight: 400;
   src: local("Lingua Franca Italic"), local("LinguaFranca-Italic"), url(../woff/LinguaFranca-Italic.woff), url(http://andreas.nolda.org/software/LinguaFranca-Italic.woff) format('woff');
 }
+
 @font-face {
   font-family: "Lingua Franca";
   font-style: normal;
