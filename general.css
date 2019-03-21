@@ -1,0 +1,39 @@
+body {
+   font-family: 'Lingua Franca';
+   font-weight: normal;
+   font-style: normal;
+   font-size: 20pt;
+   background-color: #00FF22;
+   padding: 100px;
+}
+
+h1 {
+   font-size: 80pt;
+   font-weight: normal;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+a:hover {
+   color: yellow;
+}
+
+p {
+   margin-top: 50px;
+   line-height: 40px;
+}
+
+.whiteOnBlack {
+   display: inline;
+   background-color: black;
+   color: white;
+   padding-left: 30px;
+   padding-right: 30px;
+   padding-top: 8px;
+   padding-bottom: 12px;
+   -webkit-box-decoration-break: clone;
+   box-decoration-break: clone;
+
+}
