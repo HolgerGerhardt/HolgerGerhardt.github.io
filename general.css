@@ -100,12 +100,8 @@ p {
   max-width: 500px;
 }
 
-@media only screen and (max-width: 640px) {
-  .col-xs { width: 100%; }
-}
-
 /* For tablets: */
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 800px) {
   .col-s-1  { width: 8.33%;  }
   .col-s-2  { width: 16.66%; }
   .col-s-3  { width: 300px;  }

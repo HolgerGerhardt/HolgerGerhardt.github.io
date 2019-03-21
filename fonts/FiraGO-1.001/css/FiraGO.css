@@ -118,19 +118,6 @@
 @font-face {
   font-family: "FiraGO";
   font-style: normal;
-  font-weight: 700;
-  src: local("FiraGO Bold"), local("FiraGO-Bold"), url(../woff/FiraGO-Bold.woff) format('woff');
-}
-@font-face {
-  font-family: "FiraGO";
-  font-style: italic;
-  font-weight: 700;
-  src: local("FiraGO Bold Italic"), local("FiraGO-BoldItalic"), url(../woff/FiraGO-BoldItalic.woff) format('woff');
-}
-
-@font-face {
-  font-family: "FiraGO";
-  font-style: normal;
   font-weight: 800;
   src: local("FiraGO ExtraBold"), local("FiraGO-ExtraBold"), url(../woff/FiraGO-ExtraBold.woff) format('woff');
 }
