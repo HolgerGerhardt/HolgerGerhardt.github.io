@@ -9,9 +9,9 @@ body {
    font-family: 'Lingua Franca';
    font-weight: normal;
    font-style: normal;
-   font-size: 20px;
+   font-size: 12px;
    background-color: white;
-   padding: 50px;
+   padding: 20px;
 }
 
 h1 {
@@ -65,12 +65,12 @@ p {
    margin-bottom: 30px;
    font-family: FiraGO, sans-serif;
    font-weight: 300;
-   font-size: 40px;
+   font-size: 20px;
    font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
    -webkit-font-feature-settings: "liga", "tnum", "ss01";
-   min-width: 400px;
+   min-width: 350px;
 }
 
 
@@ -95,40 +95,44 @@ p {
 }
 
 /* For mobile phones: */
-*[class*="col-"] {
-  width: 100%;
-  max-width: 500px;
+.col-left {
+   width: 100%;
+}
+.col-right {
+   width: 100%;
 }
 
 /* For tablets: */
-@media only screen and (min-width: 800px) {
-  .col-s-1  { width: 8.33%;  }
-  .col-s-2  { width: 16.66%; }
-  .col-s-3  { width: 300px;  }
-  .col-s-4  { width: 33.33%; }
-  .col-s-5  { width: 41.66%; }
-  .col-s-6  { width: 500px;  }
-  .col-s-7  { width: 58.33%; }
-  .col-s-8  { width: 66.66%; }
-  .col-s-9  { width: 75%;    }
-  .col-s-10 { width: 83.33%; }
-  .col-s-11 { width: 91.66%; }
-  .col-s-12 { width: 100%;   }
+@media only screen and (min-width: 640px) {
+   .col-left {
+      width: 250px;
+   }
+   .col-right {
+      width: 40%;
+   }
+   body {
+     font-size: 20px;
+     padding: 35px;
+   }
+   .topicBox {
+      font-size: 30px;
+   }
 }
 
-/* For desktop:
-@media only screen and (min-width: 640px) {
-  .col-1  { width: 8.33%;  }
-  .col-2  { width: 16.66%; }
-  .col-3  { width: 300px;  }
-  .col-4  { width: 33.33%; }
-  .col-5  { width: 41.66%; }
-  .col-6  { width: 50%;    }
-  .col-7  { width: 58.33%; }
-  .col-8  { width: 66.66%; }
-  .col-9  { width: 75%;    }
-  .col-10 { width: 83.33%; }
-  .col-11 { width: 91.66%; }
-  .col-12 { width: 100%;   }
+/* For desktops: */
+@media only screen and (min-width: 975px) {
+   .col-left  {
+      width: 300px;
+   }
+   .col-right  {
+      width: 55%;
+      max-width: 750px;
+   }
+   body {
+      font-size: 20px;
+      padding: 50px;
+   }
+   .topicBox {
+      font-size: 40px;
+   }
 }
-*/
