@@ -1,8 +1,218 @@
+/******************************/
+/**  LINGUA FRANCA WEB FONT  **/
+/******************************/
+
+
+/* lingua-franca.css */
+/* Andreas Nolda 2016-10-08 */
+
+@font-face {
+  font-family: "Lingua Franca";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lingua Franca"), local("LinguaFranca-Regular"), url(../LinguaFranca-Regular.woff), url(http://andreas.nolda.org/software/LinguaFranca-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: "Lingua Franca";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Lingua Franca Italic"), local("LinguaFranca-Italic"), url(../LinguaFranca-Italic.woff), url(http://andreas.nolda.org/software/LinguaFranca-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "Lingua Franca";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lingua Franca Bold"), local("LinguaFranca-Bold"), url(../LinguaFranca-Bold.woff), url(http://andreas.nolda.org/software/LinguaFranca-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: "Lingua Franca";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Lingua Franca Bold Italic"), local("LinguaFranca-BoldItalic"), url(../LinguaFranca-BoldItalic.woff), url(http://andreas.nolda.org/software/LinguaFranca-BoldItalic.woff) format('woff');
+}
+
+body {
+  font-family: "Lingua Franca", serif;
+  font-feature-settings: "liga", "pnum", "ss01";
+  font-variant-numeric: oldstyle-nums;
+  -moz-font-feature-settings: "liga", "pnum", "ss01";
+  -ms-font-feature-settings: "liga", "pnum", "ss01";
+  -webkit-font-feature-settings: "liga", "pnum", "ss01";
+}
+
+
+
+
+/***********************/
+/**  FIRAGO WEB FONT  **/
+/***********************/
+
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 100;
+  src: local("FiraGO Thin"), local("FiraGO-Thin"), url(../FiraGO-Thin.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 100;
+  src: local("FiraGO Thin Italic"), local("FiraGO-ThinItalic"), url(../FiraGO-ThinItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 200;
+  src: local("FiraGO UltraLight"), local("FiraGO-UltraLight"), url(../FiraGO-UltraLight.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 200;
+  src: local("FiraGO UltraLight Italic"), local("FiraGO-UltraLightItalic"), url(../FiraGO-UltraLightItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 250;
+  src: local("FiraGO ExtraLight"), local("FiraGO-ExtraLight"), url(../FiraGO-ExtraLight.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 250;
+  src: local("FiraGO ExtraLight Italic"), local("FiraGO-ExtraLightItalic"), url(../FiraGO-ExtraLighttItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 300;
+  src: local("FiraGO Light"), local("FiraGO-Light"), url(../FiraGO-Light.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 300;
+  src: local("FiraGO Light Italic"), local("FiraGO-LightItalic"), url(../FiraGO-LighttItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 350;
+  src: local("FiraGO Book"), local("FiraGO-Book"), url(../FiraGO-Book.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 350;
+  src: local("FiraGO Book Italic"), local("FiraGO-BookItalic"), url(../FiraGO-BookItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 400;
+  src: local("FiraGO Regular"), local("FiraGO-Regular"), url(../FiraGO-Book.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 400;
+  src: local("FiraGO Italic"), local("FiraGO-Italic"), url(../FiraGO-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 500;
+  src: local("FiraGO Medium"), local("FiraGO-Medium"), url(../FiraGO-Medium.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 500;
+  src: local("FiraGO Medium Italic"), local("FiraGO-MediumItalic"), url(../FiraGO-MediumItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 600;
+  src: local("FiraGO SemiBold"), local("FiraGO-SemiBold"), url(../FiraGO-SemiBold.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 600;
+  src: local("FiraGO SemiBold Italic"), local("FiraGO-SemiBoldItalic"), url(../FiraGO-SemiBoldItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 700;
+  src: local("FiraGO Bold"), local("FiraGO-Bold"), url(../FiraGO-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 700;
+  src: local("FiraGO Bold Italic"), local("FiraGO-BoldItalic"), url(../FiraGO-BoldItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 800;
+  src: local("FiraGO ExtraBold"), local("FiraGO-ExtraBold"), url(../FiraGO-ExtraBold.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 800;
+  src: local("FiraGO ExtraBold Italic"), local("FiraGO-ExtraBoldItalic"), url(../FiraGO-ExtraBoldItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 900;
+  src: local("FiraGO Heavy"), local("FiraGO-Heavy"), url(../FiraGO-Heavy.woff) format('woff');
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: italic;
+  font-weight: 900;
+  src: local("FiraGO Heavy Italic"), local("FiraGO-HeavyItalic"), url(../FiraGO-HeavyItalic.woff) format('woff');
+}
+
 /*
-******************************
-**  FONT AND SIZE SETTINGS  **
-******************************
+From https://github.com/bBoxType/FiraGO:
+Thin (22 units / CSS 100)
+UltraLight (34 units / CSS 200)
+ExtraLight (46 units / CSS 250)
+Light (58 units / CSS 300)
+Book (84 units / CSS 350)
+Regular (92 units / CSS 400)
+Medium (128 units / CSS 500)
+SemiBold (142 units / CSS 600)
+Bold (158 units / CSS 700)
+ExtraBold (178 units / CSS 800)
+Heavy (198 units / CSS 900)
 */
+
+
+
+
+/**********************************************/
+/**  GENERAL FONT, SIZE, AND COLOR SETTINGS  **/
+/**********************************************/
 
 
 body {
@@ -10,8 +220,8 @@ body {
    font-weight: normal;
    font-style: normal;
    font-size: 12px;
-   background-color: white;
-   padding: 20px;
+   padding: 0;
+   background-color: #F2F2F0;
 }
 
 h1 {
@@ -30,7 +240,9 @@ a:hover {
 
 p {
    margin-top: 50px;
-   line-height: 40px;
+   line-height: 1.4;
+   padding-left: 10px;
+   padding-right: 10px;
 }
 
 .whiteOnBlack {
@@ -56,11 +268,15 @@ p {
    padding-bottom: 12px;
    -webkit-box-decoration-break: clone;
    box-decoration-break: clone;
+   font-variant-numeric: lining-nums;
+   font-variant-numeric: tabular-nums;
 }
 
 .topicBox {
    height: 50px;
-   padding-bottom: 10px;
+   margin-left: 10px;
+   margin-right: 10px;
+   padding-bottom: 0;
    border-bottom: 1px solid #CC0000;
    margin-bottom: 30px;
    font-family: FiraGO, sans-serif;
@@ -70,19 +286,26 @@ p {
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
    -webkit-font-feature-settings: "liga", "tnum", "ss01";
-   min-width: 350px;
+   background-color: white;
 }
 
 
 
 
-/*
-**************************************
-**  RESPONSIVE PLACING OF ELEMENTS  **
-**************************************
-*/
+/**************************************/
+/**  RESPONSIVE PLACING OF ELEMENTS  **/
+/**************************************/
 
 
+.row {
+   height: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 0;
+   margin-bottom: 0;
+   width: 75%;
+   padding-top: 20px;
+}
 .row::after {
   content: "";
   clear: both;
@@ -91,7 +314,6 @@ p {
 
 [class*="col-"] {
   float: left;
-  padding: 15px;
 }
 
 /* For mobile phones: */
@@ -99,20 +321,47 @@ p {
    width: 100%;
 }
 .col-right {
+   position: relative;
    width: 100%;
+   background-color: white;
+   padding-left: 0;
+   padding-right: 0;
 }
 
 /* For tablets: */
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 700px) {
+   .row {
+      width: 600px;
+   }
    .col-left {
       width: 250px;
    }
    .col-right {
-      width: 40%;
+      width: 350px;
    }
    body {
      font-size: 20px;
-     padding: 35px;
+     padding: 0;
+   }
+   .topicBox {
+      font-size: 30px;
+   }
+}
+
+/* For tablets: */
+@media only screen and (min-width: 800px) {
+   .row {
+      width: 700px;
+   }
+   .col-left {
+      width: 250px;
+   }
+   .col-right {
+      width: 450px;
+   }
+   body {
+     font-size: 20px;
+     padding: 0;
    }
    .topicBox {
       font-size: 30px;
@@ -120,19 +369,33 @@ p {
 }
 
 /* For desktops: */
-@media only screen and (min-width: 975px) {
+@media only screen and (min-width: 1000px) {
+   .row {
+      width: 900px;
+   }
    .col-left  {
       width: 300px;
    }
    .col-right  {
-      width: 55%;
-      max-width: 750px;
+      width: 600px;
    }
    body {
       font-size: 20px;
-      padding: 50px;
+      padding: 0px;
    }
    .topicBox {
       font-size: 40px;
+   }
+}
+/* For large screens: */
+@media only screen and (min-width: 1200px) {
+   .row {
+      width: 1100px;
+   }
+   .col-left  {
+      width: 300px;
+   }
+   .col-right  {
+      width: 800px;
    }
 }
