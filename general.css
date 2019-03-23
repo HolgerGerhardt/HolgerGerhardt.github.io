@@ -375,10 +375,7 @@ p {
    height: 100%;
    margin-left: auto;
    margin-right: auto;
-   margin-top: 0;
-   margin-bottom: 0;
    width: var(--outer-box-width, 90%);
-   padding-top: 0px;
 }
 .outer-box::after {
   content: "";
@@ -392,13 +389,11 @@ p {
 
 .col-left {
    width: var(--col-left-width, 200px);
-   padding: 0;
 }
 
 .col-right {
    position: relative;
    width: var(--col-right-width, 100%);
    background-color: white;
-   padding: 0;
    margin-top: var(--text-margin-top);
 }
