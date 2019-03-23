@@ -214,13 +214,70 @@ Heavy (198 units / CSS 900)
 /**  VARIABLES  **/
 /*****************/
 
+/* Below 600px screen width: */
 :root {
    --spot-color: #CC0000;
    --text-margin-left: 15px;
    --text-margin-right: 15px;
    --text-margin-top: 10px;
+   --text-font-size: 12px;
+   --h1-font-size: 24px;
+   --outer-box-width: 90%;
+   --col-left-width: 200px;
+   --col-right-width: 100%;
 }
 
+/* Above 600px screen width: */
+@media only screen and (min-width: 600px) {
+   :root {
+      --outer-box-width: 550px;
+      --col-left-width: 200px;
+      --col-right-width: 350px;
+      --text-font-size: 20px;
+   }
+}
+
+/* Above 700px screen width: */
+@media only screen and (min-width: 700px) {
+   :root {
+      --outer-box-width: 650px;
+      --col-left-width: 250px;
+      --col-right-width: 400px;
+      --text-font-size: 20px;
+      --h1-font-size: 30px;
+   }
+}
+
+/* Above 800px screen width: */
+@media only screen and (min-width: 800px) {
+   :root {
+      --outer-box-width: 700px;
+      --col-left-width: 250px;
+      --col-right-width: 450px;
+   }
+}
+
+/* Above 1000px screen width: */
+@media only screen and (min-width: 1000px) {
+   :root {
+      --outer-box-width: 900px;
+      --col-left-width: 300px;
+      --col-right-width: 600px;
+      --text-margin-left: 30px;
+      --text-margin-right: 30px;
+      --text-margin-top: 20px;
+      --h1-font-size: 40px;
+   }
+}
+
+/* Above 1200px screen width: */
+@media only screen and (min-width: 1200px) {
+   :root {
+      --outer-box-width: 1100px;
+      --col-left-width: 300px;
+      --col-right-width: 800px;
+   }
+}
 
 
 /**********************************************/
@@ -237,14 +294,14 @@ body {
    font-family: 'Lingua Franca';
    font-weight: normal;
    font-style: normal;
-   font-size: 12px;
+   font-size: var(--text-font-size, 12px);
    background-color: #F2F2F0;
 }
 
 h1 {
    font-family: FiraGO;
    font-weight: 900;
-   font-size: 24px;
+   font-size: var(--h1-font-size, 24px);
 }
 
 a {
@@ -289,7 +346,7 @@ p {
    font-variant-numeric: tabular-nums;
 }
 
-.topicBox {
+.topic-box {
    padding-top: 6px;
    padding-bottom: 7px;
    border-bottom: 1px solid var(--spot-color);
@@ -298,7 +355,7 @@ p {
    margin-bottom: 30px;
    font-family: FiraGO, sans-serif;
    font-weight: 300;
-   font-size: 20px;
+   font-size: var(--h1-font-size, 24px);
    font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
@@ -309,9 +366,9 @@ p {
 
 
 
-/**************************************/
-/**  RESPONSIVE PLACING OF ELEMENTS  **/
-/**************************************/
+/*********************/
+/**  PAGE ELEMENTS  **/
+/*********************/
 
 
 .outer-box {
@@ -320,7 +377,7 @@ p {
    margin-right: auto;
    margin-top: 0;
    margin-bottom: 0;
-   width: 90%;
+   width: var(--outer-box-width, 90%);
    padding-top: 0px;
 }
 .outer-box::after {
@@ -333,109 +390,15 @@ p {
   float: left;
 }
 
-/* Below 600px: */
 .col-left {
-   width: 200px;
+   width: var(--col-left-width, 200px);
    padding: 0;
 }
+
 .col-right {
    position: relative;
-   width: 100%;
+   width: var(--col-right-width, 100%);
    background-color: white;
    padding: 0;
    margin-top: var(--text-margin-top);
-}
-
-/* Above 600px screen width: */
-@media only screen and (min-width: 600px) {
-   body {
-     font-size: 20px;
-   }
-   .outer-box {
-      width: 550px;
-   }
-   .col-right {
-      width: 350px;
-   }
-   .topicBox {
-      font-size: 30px;
-   }
-}
-
-/* Above 700px screen width: */
-@media only screen and (min-width: 700px) {
-   body {
-     font-size: 20px;
-   }
-   h1 {
-      font-size: 36px;
-   }
-   .outer-box {
-      width: 650px;
-   }
-   .col-left {
-      width: 250px;
-   }
-   .col-right {
-      width: 400px;
-   }
-   .topicBox {
-      font-size: 30px;
-   }
-}
-
-/* Above 800px screen width: */
-@media only screen and (min-width: 800px) {
-   body {
-     font-size: 20px;
-   }
-   .outer-box {
-      width: 700px;
-   }
-   .col-left {
-      width: 250px;
-   }
-   .col-right {
-      width: 450px;
-   }
-   .topicBox {
-      font-size: 30px;
-   }
-}
-
-/* Above 1000px screen width: */
-@media only screen and (min-width: 1000px) {
-   body {
-      font-size: 20px;
-   }
-   :root {
-      --text-margin-left: 30px;
-      --text-margin-right: 30px;
-      --text-margin-top: 20px;
-   }
-   .outer-box {
-      width: 900px;
-   }
-   .col-left  {
-      width: 300px;
-   }
-   .col-right  {
-      width: 600px;
-   }
-   .topicBox {
-      font-size: 40px;
-   }
-}
-
-/* Above 1200px screen width: */
-@media only screen and (min-width: 1200px) {
-   .outer-box {
-      width: 1100px;
-   }
-   .col-left  {
-      width: 300px;
-   }
-   .col-right  {
-      width: 800px;
-   }
 }
