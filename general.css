@@ -210,17 +210,34 @@ Heavy (198 units / CSS 900)
 
 
 
+/*****************/
+/**  VARIABLES  **/
+/*****************/
+
+:root {
+   --spot-color: #CC0000;
+   --text-margin-left: 15px;
+   --text-margin-right: 15px;
+   --text-margin-top: 10px;
+}
+
+
+
 /**********************************************/
 /**  GENERAL FONT, SIZE, AND COLOR SETTINGS  **/
 /**********************************************/
 
+
+*, html {
+    margin: 0;
+    padding: 0;
+}
 
 body {
    font-family: 'Lingua Franca';
    font-weight: normal;
    font-style: normal;
    font-size: 12px;
-   padding: 0;
    background-color: #F2F2F0;
 }
 
@@ -235,14 +252,14 @@ a {
    color: inherit;
 }
 a:hover {
-   color: #CC0000;
+   color: var(--spot-color);
 }
 
 p {
-   margin-top: 50px;
    line-height: 1.4;
-   padding-left: 10px;
-   padding-right: 10px;
+   margin-left: var(--text-margin-left);
+   margin-right: var(--text-margin-right);
+   margin-top: var(--text-margin-top);
 }
 
 .whiteOnBlack {
@@ -259,14 +276,13 @@ p {
 
 .whiteOnRed {
    display: inline;
-   background-color: #CC0000;
+   background-color: var(--spot-color);
    color: white;
-   line-height: 1.3;
    font-weight: 500;
-   padding-left: 30px;
-   padding-right: 30px;
-   padding-top: 8px;
-   padding-bottom: 12px;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: inherit;
+   padding-bottom: inherit;
    -webkit-box-decoration-break: clone;
    box-decoration-break: clone;
    font-variant-numeric: lining-nums;
@@ -274,11 +290,11 @@ p {
 }
 
 .topicBox {
-   height: 50px;
-   margin-left: 10px;
-   margin-right: 10px;
-   padding-bottom: 0;
-   border-bottom: 1px solid #CC0000;
+   padding-top: 6px;
+   padding-bottom: 7px;
+   border-bottom: 1px solid var(--spot-color);
+   margin-left: var(--text-margin-left);
+   margin-right: var(--text-margin-right);
    margin-bottom: 30px;
    font-family: FiraGO, sans-serif;
    font-weight: 300;
@@ -298,16 +314,16 @@ p {
 /**************************************/
 
 
-.row {
+.outer-box {
    height: 100%;
    margin-left: auto;
    margin-right: auto;
    margin-top: 0;
    margin-bottom: 0;
-   width: 75%;
-   padding-top: 20px;
+   width: 90%;
+   padding-top: 0px;
 }
-.row::after {
+.outer-box::after {
   content: "";
   clear: both;
   display: table;
@@ -320,22 +336,22 @@ p {
 /* Below 600px: */
 .col-left {
    width: 200px;
+   padding: 0;
 }
 .col-right {
    position: relative;
    width: 100%;
    background-color: white;
-   padding-left: 0;
-   padding-right: 0;
+   padding: 0;
+   margin-top: var(--text-margin-top);
 }
 
 /* Above 600px screen width: */
 @media only screen and (min-width: 600px) {
    body {
      font-size: 20px;
-     padding: 0;
    }
-   .row {
+   .outer-box {
       width: 550px;
    }
    .col-right {
@@ -350,12 +366,11 @@ p {
 @media only screen and (min-width: 700px) {
    body {
      font-size: 20px;
-     padding: 0;
    }
    h1 {
       font-size: 36px;
    }
-   .row {
+   .outer-box {
       width: 650px;
    }
    .col-left {
@@ -373,9 +388,8 @@ p {
 @media only screen and (min-width: 800px) {
    body {
      font-size: 20px;
-     padding: 0;
    }
-   .row {
+   .outer-box {
       width: 700px;
    }
    .col-left {
@@ -393,9 +407,13 @@ p {
 @media only screen and (min-width: 1000px) {
    body {
       font-size: 20px;
-      padding: 0px;
    }
-   .row {
+   :root {
+      --text-margin-left: 30px;
+      --text-margin-right: 30px;
+      --text-margin-top: 20px;
+   }
+   .outer-box {
       width: 900px;
    }
    .col-left  {
@@ -411,7 +429,7 @@ p {
 
 /* Above 1200px screen width: */
 @media only screen and (min-width: 1200px) {
-   .row {
+   .outer-box {
       width: 1100px;
    }
    .col-left  {
