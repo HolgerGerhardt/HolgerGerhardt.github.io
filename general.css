@@ -295,7 +295,7 @@ body {
    font-weight: normal;
    font-style: normal;
    font-size: var(--text-font-size, 12px);
-   background-color: #F2F2F0;
+   /* background-color: #F2F2F0; */
 }
 
 h1 {
@@ -360,7 +360,8 @@ p {
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
    -webkit-font-feature-settings: "liga", "tnum", "ss01";
-   background-color: white;
+   background-color: rgba(255, 255, 255, 0.85);
+   color: black;
 }
 
 
@@ -371,11 +372,27 @@ p {
 /*********************/
 
 
+.bg {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   /* The image used */
+   background-image: url("images/LaTeX_dark.png");
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   z-index: -99;
+}
+
 .outer-box {
+   width: var(--outer-box-width, 100%);
    height: 100%;
    margin-left: auto;
    margin-right: auto;
-   width: var(--outer-box-width, 90%);
+   padding-top: 50px;
 }
 .outer-box::after {
   content: "";
@@ -394,6 +411,6 @@ p {
 .col-right {
    position: relative;
    width: var(--col-right-width, 100%);
-   background-color: white;
    margin-top: var(--text-margin-top);
+   color: white;
 }
