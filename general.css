@@ -220,7 +220,7 @@ Heavy (198 units / CSS 900)
    --text-margin-left: 15px;
    --text-margin-right: 15px;
    --text-margin-top: 10px;
-   --text-font-size: 12px;
+   --text-font-size: 18px;
    --h1-font-size: 24px;
    --outer-box-width: 90%;
    --col-left-width: 200px;
@@ -294,7 +294,7 @@ body {
    font-family: 'Lingua Franca';
    font-weight: normal;
    font-style: normal;
-   font-size: var(--text-font-size, 12px);
+   font-size: var(--text-font-size, 15px);
    /* background-color: #F2F2F0; */
 }
 
