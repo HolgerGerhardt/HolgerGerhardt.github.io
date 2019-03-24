@@ -214,11 +214,6 @@ Heavy (198 units / CSS 900)
 /**  VARIABLES  **/
 /*****************/
 
-.col-left {
-   position: fixed;
-   top: 20px;
-   width: var(--col-left-width, 100%);
-}
 
 /* Below 600px screen width: */
 :root {
@@ -233,11 +228,40 @@ Heavy (198 units / CSS 900)
    --col-right-width: 100%;
    --padding-top: 150px;
 }
+.col-left {
+   position: fixed;
+   top: 20px;
+   width: 200px;
+   opacity: 0.85;
+}
+.col-left:hover {
+   opacity: 1;
+   transition: opacity .3s;
+}
+.col-left-bg {
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #273538;
+   opacity: 0;
+   width: 100%;
+   height: 120px;
+   z-index: -1;
+}
+
+.scrolled-bg {
+   opacity: 0.75;
+   transition: opacity .5s;
+}
+
 
 /* Above 600px screen width: */
 @media only screen and (min-width: 600px) {
    .col-right {
       margin-left: var(--col-left-width);
+   }
+   .scrolled-bg {
+      opacity: 0;
    }
    :root {
       --outer-box-width: 550px;
@@ -248,6 +272,7 @@ Heavy (198 units / CSS 900)
    }
    .col-left {
       top: var(--padding-top);
+      width: var(--col-left-width);
    }
 }
 
@@ -332,6 +357,7 @@ p {
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
    margin-top: var(--text-margin-top);
+   z-index: -5;
 }
 
 .whiteOnBlack {
@@ -377,6 +403,7 @@ p {
    -webkit-font-feature-settings: "liga", "tnum", "ss01";
    background-color: rgba(255, 255, 255, 0.85);
    color: black;
+   z-index: -5;
 }
 
 
@@ -424,4 +451,5 @@ p {
    width: var(--col-right-width, 100%);
    margin-top: var(--text-margin-top);
    color: white;
+   z-index: -4;
 }
