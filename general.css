@@ -221,7 +221,7 @@ Heavy (198 units / CSS 900)
    --text-margin-right: 15px;
    --text-margin-top: 10px;
    --text-font-size: 18px;
-   --h1-font-size: 24px;
+   --h1-font-size: 21px;
    --outer-box-width: 90%;
    --col-left-width: 200px;
    --col-right-width: 100%;
@@ -251,7 +251,7 @@ Heavy (198 units / CSS 900)
       --col-left-width: 250px;
       --col-right-width: 400px;
       --text-font-size: 20px;
-      --h1-font-size: 30px;
+      --h1-font-size: 28px;
       --padding-top: 50px;
    }
 }
@@ -274,7 +274,7 @@ Heavy (198 units / CSS 900)
       --text-margin-left: 30px;
       --text-margin-right: 30px;
       --text-margin-top: 20px;
-      --h1-font-size: 40px;
+      --h1-font-size: 36px;
    }
 }
 
@@ -309,7 +309,7 @@ body {
 h1 {
    font-family: FiraGO;
    font-weight: 900;
-   font-size: var(--h1-font-size, 24px);
+   font-size: var(--h1-font-size, 21px);
 }
 
 a {
@@ -360,10 +360,10 @@ p {
    border-bottom: 1px solid var(--spot-color);
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
-   margin-bottom: 30px;
+   margin-bottom: 20px;
    font-family: FiraGO, sans-serif;
    font-weight: 300;
-   font-size: var(--h1-font-size, 24px);
+   font-size: var(--h1-font-size, 21px);
    font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
