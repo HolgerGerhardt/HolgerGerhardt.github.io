@@ -34,11 +34,11 @@
 
 body {
   font-family: "Lingua Franca", serif;
-  font-feature-settings: "liga", "pnum", "ss01";
-  font-variant-numeric: oldstyle-nums;
-  -moz-font-feature-settings: "liga", "pnum", "ss01";
-  -ms-font-feature-settings: "liga", "pnum", "ss01";
-  -webkit-font-feature-settings: "liga", "pnum", "ss01";
+  font-feature-settings: "liga" 1, "onum" 1;
+  /*-moz-font-feature-settings: "liga", "onum", "ss01";
+  -ms-font-feature-settings: "liga", "onum", "ss01";
+  -webkit-font-feature-settings: "liga", "onum" 1, "ss01";
+  font-variant-numeric: oldstyle-nums;*/
 }
 
 
@@ -225,6 +225,7 @@ Heavy (198 units / CSS 900)
    --outer-box-width: 90%;
    --col-left-width: 200px;
    --col-right-width: 100%;
+   --padding-top: 20px;
 }
 
 /* Above 600px screen width: */
@@ -239,12 +240,19 @@ Heavy (198 units / CSS 900)
 
 /* Above 700px screen width: */
 @media only screen and (min-width: 700px) {
+   .col-left {
+      position: fixed;
+   }
+   .col-right {
+      margin-left: var(--col-left-width);
+   }
    :root {
       --outer-box-width: 650px;
       --col-left-width: 250px;
       --col-right-width: 400px;
       --text-font-size: 20px;
       --h1-font-size: 30px;
+      --padding-top: 50px;
    }
 }
 
@@ -392,7 +400,7 @@ p {
    height: 100%;
    margin-left: auto;
    margin-right: auto;
-   padding-top: 50px;
+   padding-top: var(--padding-top);
 }
 .outer-box::after {
   content: "";
