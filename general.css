@@ -85,7 +85,7 @@ body {
   font-family: "FiraGO";
   font-style: italic;
   font-weight: 250;
-  src: local("FiraGO ExtraLight Italic"), local("FiraGO-ExtraLightItalic"), url(fonts/FiraGO-1.001/FiraGO-ExtraLighttItalic.woff) format('woff');
+  src: local("FiraGO ExtraLight Italic"), local("FiraGO-ExtraLightItalic"), url(fonts/FiraGO-1.001/FiraGO-ExtraLightItalic.woff) format('woff');
 }
 
 @font-face {
@@ -98,7 +98,7 @@ body {
   font-family: "FiraGO";
   font-style: italic;
   font-weight: 300;
-  src: local("FiraGO Light Italic"), local("FiraGO-LightItalic"), url(fonts/FiraGO-1.001/FiraGO-LighttItalic.woff) format('woff');
+  src: local("FiraGO Light Italic"), local("FiraGO-LightItalic"), url(fonts/FiraGO-1.001/FiraGO-LightItalic.woff) format('woff');
 }
 
 @font-face {
@@ -210,6 +210,79 @@ Heavy (198 units / CSS 900)
 
 
 
+/*********************/
+/**  PAGE ELEMENTS  **/
+/*********************/
+
+
+.bg {
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   /* The image used */
+   background-image: url("images/LaTeX_dark.png");
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   z-index: -99;
+}
+
+.outer-box {
+   width: var(--outer-box-width, 100%);
+   height: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top: var(--padding-top);
+}
+.outer-box::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+}
+
+.col-left {
+   position: fixed;
+   top: 20px;
+   width: 200px;
+   opacity: 0.85;
+   z-index: 3;
+}
+.col-left:hover {
+   opacity: 1;
+   transition: opacity .3s;
+}
+.col-left-bg {
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #273538;
+   opacity: 0;
+   width: 100%;
+   height: 120px;
+   z-index: 2;
+}
+.scrolled-bg {
+   opacity: 0.75;
+   transition: opacity .5s;
+}
+
+.col-right {
+   position: relative;
+   width: var(--col-right-width, 100%);
+   margin-top: var(--text-margin-top);
+   color: white;
+}
+
+
+
+
 /*****************/
 /**  VARIABLES  **/
 /*****************/
@@ -228,32 +301,6 @@ Heavy (198 units / CSS 900)
    --col-right-width: 100%;
    --padding-top: 150px;
 }
-.col-left {
-   position: fixed;
-   top: 20px;
-   width: 200px;
-   opacity: 0.85;
-}
-.col-left:hover {
-   opacity: 1;
-   transition: opacity .3s;
-}
-.col-left-bg {
-   position: fixed;
-   left: 0;
-   top: 0;
-   background-color: #273538;
-   opacity: 0;
-   width: 100%;
-   height: 120px;
-   z-index: -1;
-}
-
-.scrolled-bg {
-   opacity: 0.75;
-   transition: opacity .5s;
-}
-
 
 /* Above 600px screen width: */
 @media only screen and (min-width: 600px) {
@@ -262,6 +309,10 @@ Heavy (198 units / CSS 900)
    }
    .scrolled-bg {
       opacity: 0;
+   }
+   .col-left-bg {
+      width: 0;
+      height: 0;
    }
    :root {
       --outer-box-width: 550px;
@@ -357,7 +408,6 @@ p {
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
    margin-top: var(--text-margin-top);
-   z-index: -5;
 }
 
 .whiteOnBlack {
@@ -403,53 +453,4 @@ p {
    -webkit-font-feature-settings: "liga", "tnum", "ss01";
    background-color: rgba(255, 255, 255, 0.85);
    color: black;
-   z-index: -5;
-}
-
-
-
-
-/*********************/
-/**  PAGE ELEMENTS  **/
-/*********************/
-
-
-.bg {
-   position: fixed;
-   width: 100%;
-   height: 100%;
-   left: 0;
-   top: 0;
-   /* The image used */
-   background-image: url("images/LaTeX_dark.png");
-   /* Center and scale the image nicely */
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-   z-index: -99;
-}
-
-.outer-box {
-   width: var(--outer-box-width, 100%);
-   height: 100%;
-   margin-left: auto;
-   margin-right: auto;
-   padding-top: var(--padding-top);
-}
-.outer-box::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-[class*="col-"] {
-  float: left;
-}
-
-.col-right {
-   position: relative;
-   width: var(--col-right-width, 100%);
-   margin-top: var(--text-margin-top);
-   color: white;
-   z-index: -4;
 }
