@@ -1,13 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:m="http://www.w3.org/1998/Math/MathML">
 
-<meta
-   charset="utf-8"
-   name="viewport" content="width=device-width, initial-scale=1.0"
-/>
 
 <head>
+
+   <meta
+      charset="utf-8"
+      name="viewport" content="width=device-width, initial-scale=1.0"
+   />
+
    <title>Structure with Style</title>
-   <link rel="stylesheet" href="general.css" type="text/css"/>
+
+   <!-- Adobe web fonts -->
+   <link rel="stylesheet" href="https://use.typekit.net/jmw8bxd.css">
    <script type="text/javascript">
    window.addEventListener('scroll', function () {
       document.getElementById('logo-background').classList[
@@ -15,36 +20,63 @@
       ]('scrolled-bg');
    });
    </script>
+
+   <!-- Mathematics-related styles -->
+   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia">
+   <link rel="stylesheet" href="mathscribe/jqmath-0.4.3.css">
+   <script src="mathscribe/jquery-1.4.3.min.js"></script>
+   <script src="mathscribe/jqmath-etc-0.4.6.min.js" charset="utf-8"></script>
+
+   <link rel="stylesheet" href="general.css" type="text/css"/>
+
 </head>
 
 
-<body>
+<body lang="en">
 
-
+<!--
 <div class="bg">
 </div>
+-->
 
 <div class="outer-box">
 
-   <div class="col-right">
+   <div class="col-main">
 
-      <div class="topic-box">
-         <span class="whiteOnRed">1</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Dissertation.pdf" target="_blank">Long-Form Texts</a>
-      </div>
+      <h1>Typography for Academic Texts</h1>
 
-      <div class="topic-box">
-         <span class="whiteOnRed">2</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Presentation_4-3.pdf" target="_blank">Presentations</a>
-      </div>
+      <h2>The Fundamental Issue: Difficulty Meets Nonexperts</h2>
 
-      <div class="topic-box">
-         <span class="whiteOnRed">3</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Poster.pdf" target="_blank">Posters</a>
-      </div>
-
-      <p><a href="https://github.com/HolgerGerhardt/TeXTemplates">LaTeX/XeLaTeX templates</a> for academic publications: (1)&nbsp;articles, dissertations, bachelor’s/master’s theses, (2)&nbsp;presentations, and (3)&nbsp;conference posters.</p>
-
+      <p><b>Difficulty.</b> Academic texts feature many peculiarities that only rarely occur in nonacademic texts. Examples include
+         <ul>
+            <li><sup>superscripts</sup> and <sub>subscripts</sub>,</li>
+            <li>letters from non-Latin alphabets (e.g., Greek letters like α, β, and Γ),</li>
+            <li>chemical and mathematical formulas, both inline formulas like \(y_t = &beta;_1 + &beta;_2\,x_{t,2} + &beta;_3\,x_{t,3} + &epsilon;_t\) and display formulas like \[ f&Prime;(x) &#x2254; {`d^2 f(x)}/{`d x^2}.\]</li>
+         </ul>
+      </p>
+      <p>Academic texts are, therefore, among the most difficult to typeset.</p>
+      <p><b>Nonexperts.</b> At the same time, a&nbsp;large share of all academic texts is typeset by nonexperts&mdash;instead of costly professional compositors:
+         <ul>
+            <li>students writing a&nbsp;(bachelor’s/master’s/doctoral) thesis,</li>
+            <li>researchers submitting a&nbsp;manuscript to a&nbsp;journal or posting a&nbsp;working papers online, and</li>
+            <li>book authors/editors who are frequently required by the publishing house to take care of the typesetting themselves.</li>
+         </ul>
+      </p>
+      <h2>This Website</h2>
+      <p>This website addresses the peculiarities of academic texts and provides assistance to all those involved in typesetting academic publications. It offers downloads of <a href="https://github.com/HolgerGerhardt/TeXTemplates" target="_blank">LaTeX/XeLaTeX templates</a> for academic texts. In these templates, issues such as choosing a&nbsp;suitable typeface, reasonable page margins, appropriate line spacing, etc. are taken into account.
+      </p>
+      <h1>Criteria</h1>
+      <p>Here is a&nbsp;list of things that make typesetting academic texts special:
+      <ul>
+       <li>Academic texts often include characters or entire passages from non-Latin alphabets. For instance, scholars in history, philosophy, and theology often quote Greek or Hebrew texts. In the natural sciences, medicine, mathematics, and economics, it is common to label entities with Greek lettes. These should, of course, ideally be set in the same typeface as the main text.</li>
+       <li>Mathematics-heavy texts require the font to include nonstandard symbols. Moreover, they may make finding a&nbsp;suitable line spacing difficult if they include many supercripts and subscripts. In addition, mathematical texts are frequently&mdash;and naturally&mdash;full of numbers and often abbreviations. This requires the digits and the upper-case letters of a&nbsp;font to integrate well with the lower-case letters. Last but not least, it is common to set variables and names of functions in italics. As a&nbsp;consequence, the slope of the italics should not be too pronounced.</li>
+       <li>Academic texts often include figures and/<wbr>or tables. These should, of course, fit well into the general layout, and their captions require special attention.</li>
+       <li>Most readers do not read academic literature for the pleasure of reading but because they have to get acquainted with the content. Hence, compared to reading fiction, reading academic texts is usually a&nbsp;rather effortful activity&mdash;apart from the fact that the content itself may be hard to comprehend. Bad typography requires additional effort&mdash;whereas good typography can actually make the reading fun.</li>
+      </ul></p>
    </div>
 
    <div class="col-left">
+
       <div>
          <object style="width: 100%; height: 120px; padding-left: var(--text-margin-left); padding-top: var(--text-margin-top); position: relative;" data="logo.html">
             Your browser does not support the object tag.
@@ -59,6 +91,30 @@
    </div>
 
    <div id="logo-background" class="col-left-bg">
+   </div>
+
+</div>
+
+<div class="col-right">
+
+   <p><b><a href="https://github.com/HolgerGerhardt/TeXTemplates" target="_blank">LaTeX/XeLaTeX templates for academic publications:</a></b>
+   <ol><li>articles, dissertations, bachelor’s/<wbr>master’s theses,</li>
+      <li>presenta&shy;tions, and</li>
+      <li>conference posters.</li>
+   </ol>
+   </p>
+      <p></p>
+
+   <div class="topic-box">
+      <span class="whiteOnRed">1</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Dissertation.pdf" target="_blank">Long-Form Texts</a>
+   </div>
+
+   <div class="topic-box">
+      <span class="whiteOnRed">2</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Presentation_4-3.pdf" target="_blank">Presentations</a>
+   </div>
+
+   <div class="topic-box">
+      <span class="whiteOnRed">3</span>&nbsp;<a href="https://github.com/HolgerGerhardt/TeXTemplates/blob/master/Template_Poster.pdf" target="_blank">Posters</a>
    </div>
 
 </div>

@@ -32,15 +32,6 @@
   src: local("Lingua Franca Bold Italic"), local("LinguaFranca-BoldItalic"), url(fonts/lingua-franca-1.19/LinguaFranca-BoldItalic.woff), url(http://andreas.nolda.org/software/LinguaFranca-BoldItalic.woff) format('woff');
 }
 
-body {
-  font-family: "Lingua Franca", serif;
-  font-feature-settings: "liga" 1, "onum" 1;
-  /*-moz-font-feature-settings: "liga", "onum", "ss01";
-  -ms-font-feature-settings: "liga", "onum", "ss01";
-  -webkit-font-feature-settings: "liga", "onum" 1, "ss01";
-  font-variant-numeric: oldstyle-nums;*/
-}
-
 
 
 
@@ -251,35 +242,51 @@ Heavy (198 units / CSS 900)
    position: fixed;
    top: 20px;
    width: 200px;
-   opacity: 0.85;
+   opacity: 1;
    z-index: 3;
 }
 .col-left:hover {
-   opacity: 1;
+   opacity: 0.85;
    transition: opacity .3s;
 }
 .col-left-bg {
    position: fixed;
    left: 0;
    top: 0;
-   background-color: #273538;
+   background-color: #FFFFFF;
    opacity: 0;
    width: 100%;
    height: 120px;
    z-index: 2;
 }
 .scrolled-bg {
-   opacity: 0.75;
+   opacity: 0.90;
    transition: opacity .5s;
 }
 
-.col-right {
+.col-main {
    position: relative;
-   width: var(--col-right-width, 100%);
+   width: var(--col-main-width, 70%);
    margin-top: var(--text-margin-top);
-   color: white;
+   overflow-wrap: break-word;
+   word-wrap: break-word;
+   hyphens: auto;
+   hyphenate-limit-chars: 7 2 4;
+   -webkit-hyphens: auto;
+   -webkit-hyphenate-limit-before: 2;
+   -webkit-hyphenate-limit-after: 4;
+   -ms-hyphens: auto;
+   -ms-hyphenate-limit-chars: 7 2 4;
+   -moz-hyphens: auto;
 }
 
+.col-right {
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   position: relative;
+   width: var(--col-right-width, 20%);
+   margin-top: var(--text-margin-top);
+   hyphens: manual;
+}
 
 
 
@@ -298,15 +305,13 @@ Heavy (198 units / CSS 900)
    --h1-font-size: 21px;
    --outer-box-width: 90%;
    --col-left-width: 200px;
+   --col-main-width: 100%;
    --col-right-width: 100%;
    --padding-top: 150px;
 }
 
 /* Above 600px screen width: */
 @media only screen and (min-width: 600px) {
-   .col-right {
-      margin-left: var(--col-left-width);
-   }
    .scrolled-bg {
       opacity: 0;
    }
@@ -317,6 +322,7 @@ Heavy (198 units / CSS 900)
    :root {
       --outer-box-width: 550px;
       --col-left-width: 200px;
+      --col-main-width: 350px;
       --col-right-width: 350px;
       --text-font-size: 20px;
       --padding-top: 20px;
@@ -325,16 +331,25 @@ Heavy (198 units / CSS 900)
       top: var(--padding-top);
       width: var(--col-left-width);
    }
+   .col-main {
+      margin-left: var(--col-left-width);
+      margin-right: var(--text-margin-right);
+   }
+   .col-right {
+      font-size: 16px;
+      margin-left: var(--col-left-width);
+      margin-right: var(--text-margin-right);
+   }
 }
 
 /* Above 700px screen width: */
 @media only screen and (min-width: 700px) {
    :root {
       --outer-box-width: 650px;
-      --col-left-width: 250px;
+      --col-left-width: 200px;
+      --col-main-width: 400px;
       --col-right-width: 400px;
-      --text-font-size: 20px;
-      --h1-font-size: 28px;
+      --h1-font-size: 24px;
       --padding-top: 50px;
    }
 }
@@ -342,9 +357,17 @@ Heavy (198 units / CSS 900)
 /* Above 800px screen width: */
 @media only screen and (min-width: 800px) {
    :root {
-      --outer-box-width: 700px;
-      --col-left-width: 250px;
-      --col-right-width: 450px;
+      --padding-left: 30px;
+      --padding-top: 30px;
+      --outer-box-width: 750px;
+      --col-left-width: 200px;
+      --col-main-width: 350px;
+      --col-right-width: 200px;
+   }
+   .col-right {
+      position: fixed;
+      top: var(--padding-top);
+      right: var(--text-margin-right);
    }
 }
 
@@ -352,12 +375,12 @@ Heavy (198 units / CSS 900)
 @media only screen and (min-width: 1000px) {
    :root {
       --outer-box-width: 900px;
-      --col-left-width: 300px;
-      --col-right-width: 600px;
+      --col-left-width: 200px;
+      --col-main-width: 500px;
+      --col-right-width: 225px;
       --text-margin-left: 30px;
       --text-margin-right: 30px;
       --text-margin-top: 20px;
-      --h1-font-size: 36px;
    }
 }
 
@@ -365,10 +388,12 @@ Heavy (198 units / CSS 900)
 @media only screen and (min-width: 1200px) {
    :root {
       --outer-box-width: 1100px;
-      --col-left-width: 300px;
-      --col-right-width: 800px;
+      --col-left-width: 250px;
+      --col-main-width: 650px;
    }
 }
+
+
 
 
 /**********************************************/
@@ -382,17 +407,34 @@ Heavy (198 units / CSS 900)
 }
 
 body {
-   font-family: 'Lingua Franca';
-   font-weight: normal;
+   /* font-weight: normal; */
+   font-family: adobe-text-pro, minion-3, ff-tisa-web-pro, freight-text-pro, ff-meta-serif-web-pro, adobe-caslon-pro, adobe-garamond-pro, lemonde-journal, serif;
+   font-weight: 400;
    font-style: normal;
-   font-size: var(--text-font-size, 15px);
+   /* font-feature-settings: "liga" 1, "onum" 1; */
+   font-size: var(--text-font-size, 16px);
    /* background-color: #F2F2F0; */
+   /*-moz-font-feature-settings: "liga", "onum", "ss01";
+   -ms-font-feature-settings: "liga", "onum", "ss01";
+   -webkit-font-feature-settings: "liga", "onum" 1, "ss01";
+   font-variant-numeric: oldstyle-nums;*/
+   font-variant: oldstyle-nums;
+   color: #111111;
+   letter-spacing: 0.01em;
 }
 
 h1 {
-   font-family: FiraGO;
-   font-weight: 900;
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-weight: 600;
    font-size: var(--h1-font-size, 21px);
+   color: #CC0000;
+}
+
+h2 {
+   font-family: adobe-text-pro, FiraGO, sans-serif;
+   font-weight: 700;
+   font-size: 21px;
+   color: #111111;
 }
 
 a {
@@ -403,12 +445,51 @@ a:hover {
    color: var(--spot-color);
 }
 
-p {
+p, h1, h2, ol, ul {
    line-height: 1.4;
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
    margin-top: var(--text-margin-top);
+   font-variant: common-ligatures, oldstyle-nums;
+   font-feature-settings: "liga" 1, "pnum" 1, "onum" 1;
 }
+
+ol, ul {
+   padding-left: 1.25em;
+   padding-right: 1.25em;
+}
+
+p, ol, ul {
+   line-height: 1.4;
+}
+
+/* Change color of bullet in <ul> and counter in <ol> */
+/* Inspired by https://www.lockedownseo.com/change-the-bullet-color-of-a-list-item-with-css/ */
+ul li {
+  list-style: none;
+}
+ul li::before {
+   content: "\2022";
+   color: #CC0000;
+   display: inline-block;
+   width: 1.25em;
+   margin-left: -1.25em;
+   text-align: left;
+}
+
+/* Inspired by https://css-tricks.com/custom-list-number-styling/ */
+ol {list-style: none; counter-reset: li}
+ol li {list-style: none;}
+ol li::before {
+   content: counter(li) ".";
+   color: #CC0000;
+   font-weight: 700;
+   display: inline-block;
+   width: 1.25em;
+   margin-left: -1.25em;
+   text-align: left;
+}
+ol li {counter-increment: li}
 
 .whiteOnBlack {
    display: inline;
@@ -426,15 +507,14 @@ p {
    display: inline;
    background-color: var(--spot-color);
    color: white;
-   font-weight: 500;
+   font-weight: 600;
    padding-left: 10px;
    padding-right: 10px;
    padding-top: inherit;
    padding-bottom: inherit;
    -webkit-box-decoration-break: clone;
    box-decoration-break: clone;
-   font-variant-numeric: lining-nums;
-   font-variant-numeric: tabular-nums;
+   font-feature-settings: "liga" 1, "tnum" 1, "lnum" 1;
 }
 
 .topic-box {
@@ -444,13 +524,29 @@ p {
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
    margin-bottom: 20px;
-   font-family: FiraGO, sans-serif;
-   font-weight: 300;
-   font-size: var(--h1-font-size, 21px);
-   font-feature-settings: "liga", "tnum", "ss01";
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-weight: 600;
+   /* font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
-   -webkit-font-feature-settings: "liga", "tnum", "ss01";
+   -webkit-font-feature-settings: "liga", "tnum", "ss01"; */
    background-color: rgba(255, 255, 255, 0.85);
    color: black;
+}
+
+.highlight {
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-size: 18px;
+   font-weight: 700;
+}
+
+
+/*****************************************/
+/**  MATHEMATICS-RELATED FONT SETTINGS  **/
+/*****************************************/
+
+
+math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
+   font-family: adobe-text-pro, STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif;
+   font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
 }
