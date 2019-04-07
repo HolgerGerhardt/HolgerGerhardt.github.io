@@ -576,6 +576,6 @@ ol li {counter-increment: li}
 
 
 math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
-   font-family: adobe-text-pro, STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif;
+   font-family: adobe-text-pro, serif;
    font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
 }

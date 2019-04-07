@@ -3,12 +3,33 @@
 
 <head>
 	<meta charset="utf-8">
-	
+
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia">
 	<link rel="stylesheet" href="../mathscribe/jqmath-0.4.3.css">
-	
+
 	<script src="../mathscribe/jquery-1.4.3.min.js"></script>
 	<script src="../mathscribe/jqmath-etc-0.4.6.min.js" charset="utf-8"></script>
+
+<!-- Adobe web fonts -->
+<link rel="stylesheet" href="https://use.typekit.net/jmw8bxd.css">
+
+<style media="screen">
+
+   /*****************************************/
+   /**  MATHEMATICS-RELATED FONT SETTINGS  **/
+   /*****************************************/
+
+   math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
+      font-family: adobe-text-pro, STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif;
+      font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
+   }
+   mi {
+      font-family: adobe-text-pro, serif;
+      font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
+   }
+
+</style>
+
 	<!-- <script>M.MathPlayer = false; M.trustHtml = true;</script> -->
 
 <!--
@@ -54,6 +75,20 @@ $$x={-b±√{b^2-4ac}}/{2a}$$
       <mn>355</mn>
       <mn>113</mn>
     </mfrac>
+  </mrow>
+</math>
+
+<math display="block">
+  <mrow>
+    <mi mathvariant="normal">&pi;</mi>
+    <mo>≈</mo>
+    <mfrac>
+      <mi>a</mi>
+      <mi>b</mi>
+   </mfrac>
+   <mn>, where&nbsp;</mn>
+   <mi>a</mi><mo>=</mo><mn>355 and&nbsp;</mn>
+   <mi>a</mi><mo>=</mo><mn>113</mn>
   </mrow>
 </math>
 
