@@ -575,7 +575,17 @@ ol li {counter-increment: li}
 /*****************************************/
 
 
+@font-face {
+    font-family: Asana-Math;
+    src: url('../fonts/Asana-Math.eot');
+    src: local('Asana Math'),
+         url(fonts/Asana-Math/Asana-Math.woff) format("woff"),
+         url(fonts/Asana-Math/Asana-Math.otf) format("opentype"),
+         url(fonts/Asana-Math/Asana-Math.ttf) format("truetype"),
+         url(fonts/Asana-Math/Asana-Math.ttf#Asana-Math) format("svg");
+}
+
 math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
-   font-family: adobe-text-pro, serif;
+   font-family: adobe-text-pro, Asana-Math, serif;
    font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
 }
