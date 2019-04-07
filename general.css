@@ -268,6 +268,7 @@ Heavy (198 units / CSS 900)
    position: relative;
    width: var(--col-main-width, 70%);
    margin-top: var(--text-margin-top);
+   font-size: var(--text-font-size, 16px);
    overflow-wrap: break-word;
    word-wrap: break-word;
    hyphens: auto;
@@ -282,6 +283,7 @@ Heavy (198 units / CSS 900)
 
 .col-right {
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-size: var(--col-right-font-size, 16px);
    position: relative;
    width: var(--col-right-width, 20%);
    margin-top: var(--text-margin-top);
@@ -297,12 +299,12 @@ Heavy (198 units / CSS 900)
 
 /* Below 600px screen width: */
 :root {
-   --spot-color: #CC0000;
+   --spot-color: #BB0000;
    --text-margin-left: 15px;
    --text-margin-right: 15px;
    --text-margin-top: 10px;
    --text-font-size: 18px;
-   --h1-font-size: 21px;
+   --col-right-font-size: 16px;
    --outer-box-width: 90%;
    --col-left-width: 200px;
    --col-main-width: 100%;
@@ -321,10 +323,11 @@ Heavy (198 units / CSS 900)
    }
    :root {
       --outer-box-width: 550px;
-      --col-left-width: 200px;
-      --col-main-width: 350px;
-      --col-right-width: 350px;
+      --col-left-width: 175px;
+      --col-main-width: 375px;
+      --col-right-width: 375px;
       --text-font-size: 20px;
+      --h1-font-size: 25px;
       --padding-top: 20px;
    }
    .col-left {
@@ -336,7 +339,6 @@ Heavy (198 units / CSS 900)
       margin-right: var(--text-margin-right);
    }
    .col-right {
-      font-size: 16px;
       margin-left: var(--col-left-width);
       margin-right: var(--text-margin-right);
    }
@@ -346,10 +348,10 @@ Heavy (198 units / CSS 900)
 @media only screen and (min-width: 700px) {
    :root {
       --outer-box-width: 650px;
-      --col-left-width: 200px;
-      --col-main-width: 400px;
-      --col-right-width: 400px;
-      --h1-font-size: 24px;
+      --col-left-width: 175px;
+      --col-main-width: 450px;
+      --col-right-width: 450px;
+      --h1-font-size: 27px;
       --padding-top: 50px;
    }
 }
@@ -357,30 +359,58 @@ Heavy (198 units / CSS 900)
 /* Above 800px screen width: */
 @media only screen and (min-width: 800px) {
    :root {
-      --padding-left: 30px;
-      --padding-top: 30px;
+      --padding-left: 25px;
+      --padding-top: 25px;
       --outer-box-width: 750px;
-      --col-left-width: 200px;
-      --col-main-width: 350px;
-      --col-right-width: 200px;
+      --col-left-width: 160px;
+      --col-main-width: 400px;
+      --col-right-width: 210px;
+      --col-right-pos: 560px;  /* --col-left-width + --col-main-width */
+      --col-right-font-size: 14px;
    }
    .col-right {
       position: fixed;
       top: var(--padding-top);
-      right: var(--text-margin-right);
+      margin-left: var(--col-right-pos);
+   }
+}
+
+/* Above 900px screen width: */
+@media only screen and (min-width: 900px) {
+   :root {
+      --padding-left: 25px;
+      --padding-top: 25px;
+      --outer-box-width: 850px;
+      --col-left-width: 175px;
+      --col-main-width: 450px;
+      --col-right-pos: 630px;
+      --col-right-width: 220px;
    }
 }
 
 /* Above 1000px screen width: */
 @media only screen and (min-width: 1000px) {
    :root {
-      --outer-box-width: 900px;
+      --outer-box-width: 950px;
       --col-left-width: 200px;
       --col-main-width: 500px;
-      --col-right-width: 225px;
+      --col-right-pos: 700px;
+      --col-right-width: 260px;
       --text-margin-left: 30px;
       --text-margin-right: 30px;
       --text-margin-top: 20px;
+      --col-right-font-size: 16px;
+      --h1-font-size: 28px;
+   }
+}
+
+/* Above 1100px screen width: */
+@media only screen and (min-width: 1100px) {
+   :root {
+      --outer-box-width: 1050px;
+      --col-left-width: 200px;
+      --col-main-width: 575px;
+      --col-right-pos: 760px;
    }
 }
 
@@ -388,8 +418,9 @@ Heavy (198 units / CSS 900)
 @media only screen and (min-width: 1200px) {
    :root {
       --outer-box-width: 1100px;
-      --col-left-width: 250px;
-      --col-main-width: 650px;
+      --col-left-width: 200px;
+      --col-main-width: 625px;
+      --col-right-pos: 825px;
    }
 }
 
@@ -401,7 +432,7 @@ Heavy (198 units / CSS 900)
 /**********************************************/
 
 
-*, html {
+html {
     margin: 0;
     padding: 0;
 }
@@ -412,7 +443,6 @@ body {
    font-weight: 400;
    font-style: normal;
    /* font-feature-settings: "liga" 1, "onum" 1; */
-   font-size: var(--text-font-size, 16px);
    /* background-color: #F2F2F0; */
    /*-moz-font-feature-settings: "liga", "onum", "ss01";
    -ms-font-feature-settings: "liga", "onum", "ss01";
@@ -425,31 +455,32 @@ body {
 
 h1 {
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
-   font-weight: 600;
-   font-size: var(--h1-font-size, 21px);
+   font-weight: 700;
+   font-size: var(--h1-font-size, 24px);
    color: #CC0000;
+   margin-top: 35px;
 }
 
 h2 {
    font-family: adobe-text-pro, FiraGO, sans-serif;
    font-weight: 700;
-   font-size: 21px;
+   font-size: 20px;
    color: #111111;
+   margin-top: 25px;
 }
 
 a {
    text-decoration: none;
-   color: inherit;
+   color: #BB0000;
 }
 a:hover {
-   color: var(--spot-color);
+   color: #DD0000;
 }
 
 p, h1, h2, ol, ul {
    line-height: 1.4;
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
-   margin-top: var(--text-margin-top);
    font-variant: common-ligatures, oldstyle-nums;
    font-feature-settings: "liga" 1, "pnum" 1, "onum" 1;
 }
@@ -505,7 +536,7 @@ ol li {counter-increment: li}
 
 .whiteOnRed {
    display: inline;
-   background-color: var(--spot-color);
+   background-color: #CC0000;
    color: white;
    font-weight: 600;
    padding-left: 10px;
@@ -518,20 +549,18 @@ ol li {counter-increment: li}
 }
 
 .topic-box {
-   padding-top: 6px;
-   padding-bottom: 7px;
-   border-bottom: 1px solid var(--spot-color);
-   margin-left: var(--text-margin-left);
-   margin-right: var(--text-margin-right);
-   margin-bottom: 20px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border-bottom: 1px solid #BB0000;
+   margin-top: 0;
+   margin-bottom: 0;
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
-   font-weight: 600;
    /* font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
    -ms-font-feature-settings: "liga", "tnum", "ss01";
    -webkit-font-feature-settings: "liga", "tnum", "ss01"; */
    background-color: rgba(255, 255, 255, 0.85);
-   color: black;
+   color: #111111;
 }
 
 .highlight {
