@@ -686,14 +686,22 @@ math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
 }
 
 .input {
-  font-family: Consolas, "Courier New", Courier, monospace;
+  font-family: "Consolas", Courier, "Courier New", monospace;
   font-size: 10.5pt;
   margin-left: 0.1em; margin-right: 0.15em;
+  font-feature-settings: "liga" 0;
+  -moz-font-feature-settings: "liga" 0;
+  -ms-font-feature-settings: "liga" 0;
+  -webkit-font-feature-settings: "liga" 0;
 }
 .inputpar {
-  font-family: Consolas, "Courier New", Courier, monospace;
+  font-family: "Consolas", Courier, "Courier New", monospace;
   font-size: 10.5pt;
   margin-left: 2em;
+  font-feature-settings: "liga" 0;
+  -moz-font-feature-settings: "liga" 0;
+  -ms-font-feature-settings: "liga" 0;
+  -webkit-font-feature-settings: "liga" 0;
 }
 
 .col-main #hyperlinks {
