@@ -272,7 +272,6 @@ Heavy (198 units / CSS 900)
    overflow-wrap: break-word;
    word-wrap: break-word;
    hyphens: auto;
-   hyphenate-limit-chars: 7 2 4;
    -webkit-hyphens: auto;
    -webkit-hyphenate-limit-before: 2;
    -webkit-hyphenate-limit-after: 4;
@@ -290,6 +289,15 @@ Heavy (198 units / CSS 900)
    hyphens: manual;
 }
 
+.col-nav {
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-size: var(--col-right-font-size, 16px);
+   position: relative;
+   width: 100%;
+   margin-top: var(--text-margin-top);
+   hyphens: manual;
+}
+
 
 
 /*****************/
@@ -303,10 +311,10 @@ Heavy (198 units / CSS 900)
    --text-margin-left: 15px;
    --text-margin-right: 15px;
    --text-margin-top: 10px;
-   --text-font-size: 18px;
+   --text-font-size: 17px;
    --col-right-font-size: 16px;
    --outer-box-width: 90%;
-   --col-left-width: 200px;
+   --col-left-width: 300px;
    --col-main-width: 100%;
    --col-right-width: 100%;
    --padding-top: 150px;
@@ -326,12 +334,18 @@ Heavy (198 units / CSS 900)
       --col-left-width: 175px;
       --col-main-width: 375px;
       --col-right-width: 375px;
-      --text-font-size: 20px;
+      --text-font-size: 19px;
       --h1-font-size: 25px;
       --padding-top: 20px;
+      --col-right-font-size: 14px;
    }
    .col-left {
       top: var(--padding-top);
+      width: var(--col-left-width);
+   }
+   .col-nav {
+      position: fixed;
+      top: 150px;
       width: var(--col-left-width);
    }
    .col-main {
@@ -354,6 +368,9 @@ Heavy (198 units / CSS 900)
       --h1-font-size: 27px;
       --padding-top: 50px;
    }
+   .col-nav {
+      top: 175px;
+   }
 }
 
 /* Above 800px screen width: */
@@ -366,7 +383,6 @@ Heavy (198 units / CSS 900)
       --col-main-width: 400px;
       --col-right-width: 210px;
       --col-right-pos: 560px;  /* --col-left-width + --col-main-width */
-      --col-right-font-size: 14px;
    }
    .col-right {
       position: fixed;
@@ -399,7 +415,7 @@ Heavy (198 units / CSS 900)
       --text-margin-left: 30px;
       --text-margin-right: 30px;
       --text-margin-top: 20px;
-      --col-right-font-size: 16px;
+      --col-right-font-size: 15px;
       --h1-font-size: 28px;
    }
 }
@@ -418,9 +434,10 @@ Heavy (198 units / CSS 900)
 @media only screen and (min-width: 1200px) {
    :root {
       --outer-box-width: 1100px;
-      --col-left-width: 200px;
+      --col-left-width: 225px;
       --col-main-width: 625px;
       --col-right-pos: 825px;
+      --col-right-font-size: 16px;
    }
 }
 
@@ -459,6 +476,7 @@ h1 {
    font-size: var(--h1-font-size, 24px);
    color: #CC0000;
    margin-top: 35px;
+   hyphens: manual;
 }
 
 h2 {
@@ -467,6 +485,7 @@ h2 {
    font-size: 20px;
    color: #111111;
    margin-top: 25px;
+   hyphens: manual;
 }
 
 a {
@@ -478,20 +497,20 @@ a:hover {
 }
 
 p, h1, h2, ol, ul {
-   line-height: 1.4;
+   line-height: 1.3;
    margin-left: var(--text-margin-left);
    margin-right: var(--text-margin-right);
    font-variant: common-ligatures, oldstyle-nums;
    font-feature-settings: "liga" 1, "pnum" 1, "onum" 1;
 }
 
+/* p, ol, ul {
+   text-align: justify;
+   text-justify: inter-word;
+} */
+
 ol, ul {
    padding-left: 1.25em;
-   padding-right: 1.25em;
-}
-
-p, ol, ul {
-   line-height: 1.4;
 }
 
 /* Change color of bullet in <ul> and counter in <ol> */
@@ -563,6 +582,23 @@ ol li {counter-increment: li}
    color: #111111;
 }
 
+.caption {
+   padding-top: 10px;
+   padding-bottom: 10px;
+   /* border-top: 1px solid #AAAAAA; */
+   border-bottom: 1px solid #AAAAAA;
+   margin-top: 0;
+   margin-bottom: 0;
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   /* font-feature-settings: "liga", "tnum", "ss01";
+   -moz-font-feature-settings: "liga", "tnum", "ss01";
+   -ms-font-feature-settings: "liga", "tnum", "ss01";
+   -webkit-font-feature-settings: "liga", "tnum", "ss01"; */
+   background-color: rgba(255, 255, 255, 0.85);
+   color: #888888;
+   font-size: 15px;
+}
+
 .highlight {
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
    font-size: 18px;
@@ -588,4 +624,84 @@ ol li {counter-increment: li}
 math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
    font-family: adobe-text-pro, Asana-Math, serif;
    font-feature-settings: "liga" 0, "tnum" 1, "lnum" 1;
+}
+
+
+
+
+/**********************/
+/**  LEGACY CLASSES  **/
+/**********************/
+
+
+.fltlft { /* Mit dieser Klasse können Sie ein Element auf der Seite nach links fließen lassen. */
+  position: relative;
+  float: left;
+  margin-right: 8px;
+}
+.picture {
+  position:relative;
+  float: left;
+  border: 0px;
+}
+.picture_border {
+  position: relative;
+  float: left;
+  border: 1px solid #888888;
+}
+.caption {
+  position: relative;
+  float: left;
+  font-size: 9pt;
+  color: #777777;
+  margin-left: 8px;
+}
+.clearfloat { /* Diese Klasse sollte in einem div- oder break-Element platziert werden und das letzte Element vor dem Schließen eines Containers sein, der wiederum einen vollständigen Float enthalten sollte. */
+  clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+.initial2 {
+  position:relative;
+  float: left;
+  border: 0px;
+  font: 290% "Adobe Garamond Pro", Georgia, Constantia, "Times New Roman", Times, serif;
+  color: #CC0000;
+  line-height: 48px;
+  margin-left: -2px;
+  margin-bottom: -10px;
+}
+
+.initial5 {
+  position:relative;
+  float: left;
+  border: 0px;
+  font: 800% "Adobe Garamond Pro", Georgia, Constantia, "Times New Roman", Times, serif;
+  color: #DDDDCC;
+  line-height: 115px;
+  margin-left: -5px;
+  margin-bottom: -25px;
+}
+
+.input {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 10.5pt;
+  margin-left: 0.1em; margin-right: 0.15em;
+}
+.inputpar {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 10.5pt;
+  margin-left: 2em;
+}
+
+.col-main #hyperlinks {
+  position: absolute;
+  left: var(--col-main-width); width: 200px;
+  margin-top: 3px;
+  float: left;
+  font-size: 9pt;
+  color: #777777;
+  margin-left: 8px;
 }
