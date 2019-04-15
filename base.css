@@ -485,8 +485,8 @@ h2 {
    font-size: 20px;
    color: #111111;
    margin-top: 35px;
-   padding-top: 6px;
-   border-top: 1px solid #CC0000;
+   /* padding-top: 6px;
+   border-top: 1px solid #CC0000; */
    hyphens: manual;
 }
 
@@ -567,6 +567,19 @@ ol li {counter-increment: li}
    -webkit-box-decoration-break: clone;
    box-decoration-break: clone;
    font-feature-settings: "liga" 1, "tnum" 1, "lnum" 1;
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+}
+
+.header-box {
+   display: inline-block;
+   font-size: 13px;
+   text-transform: uppercase;
+   padding-top: 3px;
+   padding-left: 7px;
+   padding-right: 5px;
+   padding-bottom: 3px;
+   margin-top: 15px;
+   margin-bottom: 5px;
 }
 
 .topic-box {
@@ -588,7 +601,9 @@ ol li {counter-increment: li}
    display: block;
    font-style: italic;
    margin-top: -5px;
+   padding-top: 6px;
    padding-bottom: 7px;
+   border-top: 1px solid #CC0000;
    border-bottom: 1px solid #CC0000;
 }
 
