@@ -268,7 +268,7 @@ Heavy (198 units / CSS 900)
    position: relative;
    width: var(--col-main-width, 70%);
    margin-top: var(--text-margin-top);
-   font-size: var(--text-font-size, 16px);
+   font-size: var(--text-font-size, 15px);
    overflow-wrap: break-word;
    word-wrap: break-word;
    hyphens: auto;
@@ -311,7 +311,7 @@ Heavy (198 units / CSS 900)
    --text-margin-left: 15px;
    --text-margin-right: 15px;
    --text-margin-top: 10px;
-   --text-font-size: 17px;
+   --text-font-size: 16px;
    --col-right-font-size: 16px;
    --outer-box-width: 90%;
    --col-left-width: 300px;
@@ -334,8 +334,8 @@ Heavy (198 units / CSS 900)
       --col-left-width: 175px;
       --col-main-width: 375px;
       --col-right-width: 375px;
-      --text-font-size: 19px;
-      --h1-font-size: 25px;
+      --text-font-size: 18px;
+      --h1-font-size: 22px;
       --padding-top: 20px;
       --col-right-font-size: 14px;
    }
@@ -365,7 +365,7 @@ Heavy (198 units / CSS 900)
       --col-left-width: 175px;
       --col-main-width: 450px;
       --col-right-width: 450px;
-      --h1-font-size: 27px;
+      --h1-font-size: 25px;
       --padding-top: 50px;
    }
    .col-nav {
@@ -416,7 +416,7 @@ Heavy (198 units / CSS 900)
       --text-margin-right: 30px;
       --text-margin-top: 20px;
       --col-right-font-size: 15px;
-      --h1-font-size: 28px;
+      --h1-font-size: 30px;
    }
 }
 
@@ -473,16 +473,18 @@ body {
 h1 {
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
    font-weight: 700;
-   font-size: var(--h1-font-size, 24px);
+   font-style: normal;
+   font-size: var(--h1-font-size, 22px);
    color: #CC0000;
    margin-top: 35px;
+   margin-bottom: 30px;
    hyphens: manual;
 }
 
 h2 {
    font-family: adobe-text-pro, FiraGO, sans-serif;
    font-weight: 700;
-   font-size: 20px;
+   font-size: 22px;
    color: #111111;
    margin-top: 35px;
    /* padding-top: 6px;
@@ -559,19 +561,22 @@ ol li {counter-increment: li}
    display: inline;
    background-color: #CC0000;
    color: white;
+   margin-left: 0;
+   margin-top: 0;
    font-weight: 600;
-   padding-left: 10px;
-   padding-right: 10px;
+   padding-left: 12px;
+   padding-right: 12px;
    padding-top: inherit;
-   padding-bottom: inherit;
+   padding-bottom: 4px;
    -webkit-box-decoration-break: clone;
    box-decoration-break: clone;
    font-feature-settings: "liga" 1, "tnum" 1, "lnum" 1;
-   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   /* font-family: ff-meta-web-pro, FiraGO, sans-serif; */
 }
 
 .header-box {
    display: inline-block;
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
    font-size: 13px;
    text-transform: uppercase;
    padding-top: 3px;
@@ -597,7 +602,50 @@ ol li {counter-increment: li}
    color: #111111;
 }
 
+.section-box {
+   padding-bottom: 0px;
+   padding-left: 0;
+   padding-top: 0;
+   margin-left: var(--text-margin-left);
+   margin-right: var(--text-margin-right);
+   margin-top: 0;
+   margin-bottom: 20px;
+   font-family: ff-meta-web-pro, FiraGO, sans-serif;
+   font-weight: 700;
+   vertical-align: top;
+   /* font-feature-settings: "liga", "tnum", "ss01";
+   -moz-font-feature-settings: "liga", "tnum", "ss01";
+   -ms-font-feature-settings: "liga", "tnum", "ss01";
+   -webkit-font-feature-settings: "liga", "tnum", "ss01"; */
+   font-size: 24px;
+   background-color: #F8F8F8;
+   color: #111111;
+   float: none;
+   display: block;
+   border-left: 0px solid white;
+   border-top: 1px solid #BB0000;
+   border-bottom: 1px solid #BB0000;
+   border-collapse: collapse;
+   border-spacing: 0px;
+}
+
+.section-box-text {
+   font-family: adobe-text-pro, serif;
+   font-weight: 400;
+   margin-left: 0;
+   /* font-feature-settings: "liga", "tnum", "ss01";
+   -moz-font-feature-settings: "liga", "tnum", "ss01";
+   -ms-font-feature-settings: "liga", "tnum", "ss01";
+   -webkit-font-feature-settings: "liga", "tnum", "ss01"; */
+   font-size: var(--text-font-size);
+   background-color: #F8F8F8;
+   color: #111111;
+}
+
 .motto {
+   font-family: farnham-display, serif;
+   font-size: 19px;
+   font-weight: 300;
    display: block;
    font-style: italic;
    margin-top: -5px;
@@ -612,16 +660,33 @@ ol li {counter-increment: li}
    border-bottom: 1px solid #CC0000;
 }
 
+.figure {
+   display: table;
+   vertical-align: bottom;
+   padding-left: var(--text-margin-left);
+}
+
+.picture {
+   display: block;
+   vertical-align: top;
+   border: 0px;
+   float: none;
+}
+.picture_border {
+   padding-left: 6px;
+   border: 1px solid #AAAAAA;
+}
+
 .caption {
+   display: block;
+   vertical-align: top;
+   float: none;
    position: relative;
-   display: table-cell;
-   float: left;
    padding-top: 10px;
    padding-bottom: 10px;
    /* border-top: 1px solid #AAAAAA; */
    /* border-bottom: 1px solid #AAAAAA; */
-   margin-left: var(--text-margin-left);
-   margin-right: var(--text-margin-right);
+   padding-right: var(--text-margin-right);
    font-family: ff-meta-web-pro, FiraGO, sans-serif;
    /* font-feature-settings: "liga", "tnum", "ss01";
    -moz-font-feature-settings: "liga", "tnum", "ss01";
@@ -630,6 +695,23 @@ ol li {counter-increment: li}
    background-color: rgba(255, 255, 255, 0.85);
    color: #888888;
    font-size: 14px;
+}
+
+@media only screen and (min-width: 1000px) {
+   .picture {
+      /* display: table-cell; */
+      float: left;
+      padding-right: 0;
+      margin-right: var(--text-margin-right);
+   }
+   .caption {
+      /* display: table-cell; */
+      float: none;
+      padding-top: 0;
+      padding-bottom: 0;
+      min-width: 300px;
+      background-color: transparent;
+   }
 }
 
 .highlight {
@@ -672,19 +754,6 @@ math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
   float: left;
   margin-right: 8px;
   display: table;
-}
-
-.picture {
-  position: relative;
-  display: table-cell;
-  float: left;
-  border: 0px;
-  margin-left: var(--text-margin-left);
-  margin-right: var(--text-margin-right);
-}
-.picture_border {
-   padding: 6px;
-   border: 1px solid #AAAAAA;
 }
 
 .clearfloat { /* Diese Klasse sollte in einem div- oder break-Element platziert werden und das letzte Element vor dem Schließen eines Containers sein, der wiederum einen vollständigen Float enthalten sollte. */
