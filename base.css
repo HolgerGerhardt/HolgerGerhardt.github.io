@@ -664,6 +664,7 @@ ol li {counter-increment: li}
    display: table;
    vertical-align: bottom;
    padding-left: var(--text-margin-left);
+   padding-right: var(--text-margin-right);
 }
 
 .picture {
@@ -700,16 +701,16 @@ ol li {counter-increment: li}
 @media only screen and (min-width: 1000px) {
    .picture {
       /* display: table-cell; */
-      float: left;
+      display: table-cell;
       padding-right: 0;
-      margin-right: var(--text-margin-right);
+      padding-right: var(--text-margin-right);
    }
    .caption {
       /* display: table-cell; */
-      float: none;
+      display: table-cell;
+      padding-right: 0;
       padding-top: 0;
       padding-bottom: 0;
-      min-width: 300px;
       background-color: transparent;
    }
 }
