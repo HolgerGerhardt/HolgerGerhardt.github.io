@@ -468,6 +468,7 @@ body {
    font-variant: oldstyle-nums;
    color: #111111;
    letter-spacing: 0.01em;
+   hanging-punctuation: first last force-end;
 }
 
 h1 {
