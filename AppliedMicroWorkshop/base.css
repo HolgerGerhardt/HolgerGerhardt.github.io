@@ -5,10 +5,10 @@ body {
    margin-top: 25px;
    hyphens: auto;
    -webkit-hyphens: auto;
-   -webkit-hyphenate-limit-before: 3;
+   -webkit-hyphenate-limit-before: 2;
    -webkit-hyphenate-limit-after: 4;
    -ms-hyphens: auto;
-   -ms-hyphenate-limit-chars: 7 3 4;
+   -ms-hyphenate-limit-chars: 7 2 4;
    -moz-hyphens: auto;
 }
 
