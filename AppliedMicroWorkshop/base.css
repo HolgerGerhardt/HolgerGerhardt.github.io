@@ -1,5 +1,5 @@
 html {
-   font-size: 1.5vw;
+   font-size: clamp(3mm, 3vw, 24px);
 }
 
 body {
