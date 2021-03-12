@@ -13,7 +13,7 @@ body {
     margin-right: auto;
     text-align: left;
 }
-html {
+html, p {
    font-size: 26px;
 }
 
