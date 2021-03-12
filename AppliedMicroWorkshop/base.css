@@ -12,6 +12,23 @@ body {
    -moz-hyphens: auto;
 }
 
+/* Below 400px screen width: */
+.tiny {
+   font-size: 8px;
+}
+/* Above 400px screen width: */
+@media screen and (min-width: 400px) {
+   .tiny {
+      font-size: 10px;
+   }
+}
+/* Above 600px screen width: */
+@media screen and (min-width: 600px) {
+   .tiny {
+      font-size: 12px;
+   }
+}
+
 /* Below 850px screen width: */
 .calendar {
    width: 92%;
@@ -24,7 +41,6 @@ body {
 html {
    font-size: 15px;
 }
-
 /* Above 850px screen width: */
 @media screen and (min-width: 850px) {
    html {
