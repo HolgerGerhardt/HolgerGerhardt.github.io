@@ -34,7 +34,7 @@ a:hover {
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
 
 h1, h2 {
-   font-family: "Exo 2", sans-serif;
+   font-family: "Exo 2", Arial, sans-serif;
 }
 h1 {
    color: #07529A;
