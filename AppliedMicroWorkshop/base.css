@@ -6,7 +6,7 @@ body {
     zoom: 1.5;
 }
 
-/* Below 750px screen width: */
+/* Below 850px screen width: */
 .calendar {
     width: 95% !important;
     height: 750px !important;
@@ -14,8 +14,8 @@ body {
     margin-right: auto;
     text-align: left;
 }
-/* Above 750px screen width: */
-@media screen and (min-width: 750px) {
+/* Above 850px screen width: */
+@media screen and (min-width: 850px) {
     .calendar {
         width: 80% !important;
         max-width: 1000px !important;
