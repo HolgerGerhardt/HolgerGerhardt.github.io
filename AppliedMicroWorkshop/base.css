@@ -1,33 +1,35 @@
 body {
-    text-align: center;
-    vertical-align: top;
-    font-family: Arial, sans-serif;
-    margin-top: 25px;
+   text-align: center;
+   vertical-align: top;
+   font-family: Arial, sans-serif;
+   margin-top: 25px;
+   hyphens: auto;
+   -webkit-hyphens: auto;
+   -webkit-hyphenate-limit-before: 3;
+   -webkit-hyphenate-limit-after: 4;
+   -ms-hyphens: auto;
+   -ms-hyphenate-limit-chars: 7 3 4;
+   -moz-hyphens: auto;
 }
 
 /* Below 850px screen width: */
 .calendar {
-    width: 95% !important;
-    height: 750px !important;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+   width: 92%;
+   height: 750px;
+   max-width: 900px;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: left;
 }
 html {
-   font-size: 16px;
+   font-size: 15px;
 }
 
 /* Above 850px screen width: */
 @media screen and (min-width: 850px) {
-    .calendar {
-        width: 80% !important;
-        max-width: 1000px !important;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    html {
-       font-size: 18px;
-    }
+   html {
+      font-size: 16px;
+   }
 }
 
 a {
@@ -42,6 +44,11 @@ a:hover {
 
 h1, h2 {
    font-family: "Exo 2", Arial, sans-serif;
+   hyphens: manual;
+   -webkit-hyphens: manual;
+   -ms-hyphens: manual;
+   -moz-hyphens: manual;
+
 }
 h1 {
    color: #07529A;
