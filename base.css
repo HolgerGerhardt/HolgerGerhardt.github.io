@@ -809,8 +809,9 @@ math, fmath, .fm-math, fmath mo, fmath mi, .fm-mo, .ma-sans-serif {
 .col-main #hyperlinks {
   position: absolute;
   left: var(--col-main-width); width: 200px;
-  margin-top: 3px;
+  margin-top: -18px;
   float: left;
+  font-family: ff-meta-web-pro, FiraGO, sans-serif;
   font-size: 9pt;
   color: #777777;
   margin-left: 8px;
