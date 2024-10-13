@@ -1,0 +1,1690 @@
+<!doctype html>
+
+
+<html>
+
+
+<head>
+
+<title>Gerhardt &amp; Suchy: SCBR Interface</title>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<noscript>
+  <div class="alert alert-danger text-center">
+    This page requires JavaScript.
+  </div>
+</noscript>
+
+
+<style>
+
+/* From _BR_styles_.css */
+
+html, body {
+  /* Disable scrolling for this particular page */
+  overflow: hidden;
+  /* Reset widht, height, and font size for this particular page type */
+  height: 100%;
+  width: 100%;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: small;
+}
+
+/* Adjust Bootstrap classes */
+:root {
+  --bs-primary: #307BFA;
+}
+.btn {
+  font-size: min(max(8px, min(2.22vh, 1.25vw)), 16px);
+}
+.btn-outline-danger, .btn-outline-warning {
+  background-color: white;
+}
+code, .code {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+}
+
+/* Push oTree “Debug info” table down */
+.debug-info {
+  margin-top: 100%;
+  /*display: none;*/
+}
+
+/* Additional classes */
+.flexfontsize {
+  font-size: min(max(7px, min(2.22vh, 1.25vw)), 16px);
+  line-height: 140%;
+}
+.flexfontsizesmall {
+  font-size: min(min(1.6vh, 0.925vw), 14px);
+  line-height: 135%;
+  text-align: center;
+  color: darkgray;
+  position: relative;
+}
+
+.date_regular {
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  height: 0px;
+}
+.date_highlighted {
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--bs-primary);
+  display: block;
+  width: 500%;
+  margin-left: -200%;
+  margin-right: -200%;
+  height: 0px;
+  border: 0px solid green;
+}
+
+.center{
+  position: relative;
+  top: 0.5cm;
+  left: 3.25cm;
+  border: 1px dotted darkgrey;
+}
+
+.currency {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#information {
+   position: relative;
+   text-align: center;
+}
+
+#information_submit {
+   position: relative;
+   text-align: center;
+}
+
+.example{
+  font-weight:normal;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.today {
+  background-color: var(--bs-primary);
+  padding: 0px 5px 1px 5px;  /* top right bottom left */
+  color: white;
+  display: inline-block;
+  width: auto;
+  /* height: min(max(12px, min(2.75vh, 1.75vw)), 22px); */
+  height: auto;
+}
+
+#datel-hl-0 {
+  display: inline-block;
+  height: auto;
+  -webkit-transition: all 0.67s ease;
+  -moz-transition: all 0.67s ease;
+  transition: all 0.67s ease;
+}
+
+/* ---- Timeline ---- */
+/* Line */
+.time-arrow {
+  position: relative;
+  display: block;
+  margin: 0px;
+  height: 1.5px;
+  width: 103%;
+  background: darkgray;
+  top: 48.5%;
+}
+/* Arrow End Point */
+.time-arrow::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  display: block;
+  border-radius: 10px;
+  border: 10px solid darkgray;
+  margin-right: -1.1vmin;
+}
+/* Arrow */
+.time-arrow::after {
+  top: min(-0.4vmin, -3px);
+  right: 0px;
+  border: max(0.45vmin, 4px) solid transparent;
+  border-right: 0px;
+  border-left: 1.1vmin solid darkgray;
+  border-radius: 0px;
+}
+
+/* ---- Timeline elements ---- */
+.tl {
+  width: 100%;
+  height: 100%;
+  display: table;
+  table-layout: fixed;
+  margin-top: -1.5px;
+}
+.tli {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0px;
+  border: 0px dashed darkgray;
+  width: 8%;
+}
+
+/* Points */
+.point {
+  font-size: 200%;
+  line-height: 55%;
+}
+
+/* Animate payment dates */
+.animate {
+  border: 0px solid red;
+  font-size: min(max(8px, min(2.22vh, 1.25vw)), 16px);
+  -webkit-transition: transform 0.67s ease, margin-top 0.67s ease, margin-bottom 0.67s ease;
+  -moz-transition: transform 0.67s ease, margin-top 0.67s ease, margin-bottom 0.67s ease;
+  transition: transform 0.67s ease, margin-top 0.67s ease, margin-bottom 0.67s ease;
+}
+
+.debug-info {
+  margin-top: 800px;
+  display: none;
+}
+
+/* For debugging layout-related issues */
+/* div {
+  border: 1px gold dashed;
+} */
+       
+</style>
+
+
+<!-- Prevent scrolling as much as possible -->
+<!--- Use 99vw and 99vh instead of 100vw and 100vh because potential scrollbars are not takein into account by vw/vh. -->
+<div id="universe" style="position: absolute; left: 0%; top: 0%; width: 99vw; height: 99vh; overflow: hidden; margin: 0px;">
+  <!-- Center plot of budget restriction vertically -->
+  <div style="position: absolute; top: 50%; left: 0%; transform: translate(0%, -50%); width: 98vw; height: 98vh; max-width: 1280px; max-height: 720px;">
+    <!--{% include "SCB/_BR_display_.html" %}-->
+      <!--- Use 98vw and 98vh instead of 100vw and 100vh because potential scrollbars are not takein into account by vw/vh. -->
+      <!-- Use nested divs to create an interior div with 16:9 aspect ratio and max-width of 1280px and max-height of 720p: -->
+      <!-- Box to determine window width, set height to 9/16 = 56.25% => 0.5625 * 98vw = 55.125vw  of window width and no more than window height -->
+      <div id="16-to-9_outer" style="visibility: hidden; width: 98vw; height: 55.125vw; max-height: 98vh; border: 0px green dashed; position: absolute; left: 0px; top: 0px; text-align: center;">
+        <!-- Box to set width to no more than 16/9 = 177.78% of vh => 1.7778 * 98vh = 174.2244vh-->
+        <div id="16-to-9_inner" style="position: relative; height: 100%; max-width: 174.2244vh; margin-left: auto; margin-right: auto; border: 0px gold dashed; z-index: 9;">
+          <!-- div to set max dimensions to 1280px × 720px -->
+          <div id="max-absolute-dims" class="flexfontsize" style="width: 100%; max-width: 1280px; height: 100%; max-height: 720px; border: 0px blue dashed; position: relative; margin: auto;">
+            <div id="feedback-container" style="display: none; z-index: 66; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;">
+              <p style="position: absolute; text-align: center; width: 100%; font-weight: bold; font-size: 150%; padding-top: 25%; z-index: 55;">
+                <span id="feedback" style="padding: 15px; padding-top: 8px; padding-bottom: 10px;">Feedback</span>
+              </p>
+            </div>
+            <!-- ROW 1 -->
+            <div id="time-line" class="flexfontsizesmall" style="margin-left: auto; margin-right: auto; width: 80%; height: 10%; text-align: center; border: 0px red dashed; z-index: 99;">
+              <!--{% if session.config.pref_type == "time" %}-->
+                <!-- TIMELINE: Insert visual representation with dynamic dates -->
+                <div id="line" class="time-arrow" style="z-index: -9;"></div>
+                <div style="height: 100%; margin-top: 1px;">
+                  <div class="tl">
+                    <!--{% for date in dates %}-->
+                      <div class="tli">
+                        <span id="dateu0" class="date_regular">Today</span><br>
+                        <b id="point0" class="point date_highlighted">&bull;</b><br>
+                        <span id="datel0" class="date_highlighted animate"><span id="datel-hl-0" class="today">Today</span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu1" class="date_regular">2033-12-31</span><br>
+                        <b id="point1" class="point date_regular">&bull;</b><br>
+                        <span id="datel1" class="date_highlighted"><span id="datel-hl-1" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu2" class="date_regular">2044-12-31</span><br>
+                        <b id="point2" class="point date_regular">&bull;</b><br>
+                        <span id="datel2" class="date_highlighted"><span id="datel-hl-2" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu3" class="date_regular">2055-12-31</span><br>
+                        <b id="point3" class="point date_regular">&bull;</b><br>
+                        <span id="datel3" class="date_highlighted"><span id="datel-hl-3" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu4" class="date_regular">2066-12-31</span><br>
+                        <b id="point4" class="point date_regular">&bull;</b><br>
+                        <span id="datel4" class="date_highlighted"><span id="datel-hl-4" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu5" class="date_regular">2077-12-31</span><br>
+                        <b id="point5" class="point date_regular">&bull;</b><br>
+                        <span id="datel5" class="date_highlighted"><span id="datel-hl-5" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu6" class="date_regular">2088-12-31</span><br>
+                        <b id="point6" class="point date_regular">&bull;</b><br>
+                        <span id="datel6" class="date_highlighted"><span id="datel-hl-6" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu7" class="date_regular">2099-12-31</span><br>
+                        <b id="point7" class="point date_regular">&bull;</b><br>
+                        <span id="datel7" class="date_highlighted"><span id="datel-hl-7">31.12.2099</span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu8" class="date_regular">2110-31-12</span><br>
+                        <b id="point8" class="point date_regular">&bull;</b><br>
+                        <span id="datel8" class="date_highlighted"><span id="datel-hl-8" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu9" class="date_regular">2121-12-31</span><br>
+                        <b id="point9" class="point date_regular">&bull;</b><br>
+                        <span id="datel9" class="date_highlighted"><span id="datel-hl-9" class=""></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu10" class="date_regular">2132-12-31</span><br>
+                        <b id="point10" class="point date_highlighted">&bull;</b><br>
+                        <span id="datel10" class="date_highlighted animate"><span id="datel-hl-10" class="date_highlighted"></span></span><br>
+                      </div>
+                      <div class="tli">
+                        <span id="dateu11" class="date_regular">2143-12-31</span><br>
+                        <b id="point11" class="point date_regular">&bull;</b><br>
+                        <span id="datel11" class="date_highlighted"><span id="datel-hl-11" class=""></span></span><br>
+                      </div>
+                    <!--{% endfor %}-->
+                  </div>
+                </div>
+              <!--{% endif %}-->
+            </div>
+            <!-- ROW 2 -->
+            <div id="SCB-row-2" style="width: 100%; height: 80%; opacity: 0; transition: all 0.67s ease;">
+              <!-- LEFT COLUMN: LABEL FOR VERTICAL AXIS -->
+              <div style="float: left; text-align: right; width: 20%; height: 100%;">
+                <!-- Fixed maximum payments, vertical axis -->
+                <span id="y_max" style="display: block; color: gray; position: relative; top: 100%; width: 100%; height: 5em; margin-top: -5em; border: 0px magenta dashed;">
+                  <span id="y_max_val" class="currency">0&nbsp;€</span><br>
+                  Maximum <span id="info-y-max">payment<br><b class="today">today</b></span>
+                </span>
+                <!-- Real-time updates, vertical axis -->
+                <span id="amount_y_box" style="display: none; color: black; position: relative; top: 100%; width: 100%; height: 5em; margin-top: -5em; border: 0px magenta dashed;">
+                  <span class="currency" style="background-color: rgba(255, 255, 255, 0.75);"><span id="amount_y">0</span>&nbsp;&euro;</span><br>
+                  <span id="info-y">Payment<br><b class="today">today</b></span>
+                </span>
+              </div>
+              <!-- CENTER COLUMN: PLOT -->
+              <div id="container" style="float: left; width: 45%; height: 100%; z-index: 99;">
+                <!-- width: 80% × 9/16 = 45% -->
+                <!-- "Container" div to be filled by the plot -->
+              </div>
+              <!-- RIGHT COLUMN: PAYMENT INFO -->
+              <div style="float: right; width: 30%; height: 100%; padding-right: 5%;">
+                <p id="comprehension_task" style="background-color: #307BFA; color: white; text-align: center; font-weight: bold; padding: 7px; border-radius: 7px; hyphens: none; width: 80%; margin-left: 10%; visibility: hidden;">
+                    Comprehension check:<br>
+                    <span id="task" style="-webkit-hyphens: manual; -moz-hyphens: manual; -ms-hyphens: manual; hyphens: manual;">Select the following allocation:</span>
+                </p>
+                <p>
+                  <table style="width: 125%; height: 55%; margin-top: 15%; margin-left: -15%;">
+                    <tr style="height: 60%;">
+                      <td style="text-align: center; vertical-align: bottom;">
+                        <div id="bar_y" style="width: 44%; height: 0%; border: 0px solid #307BFA; background-color: var(--bs-primary); display: inline-block;">
+                        </div><br>
+                        <span class="currency"><span id="amount_1">&#8210;&#8210;,&#8210;&#8210;</span>&nbsp;euros</span><br>
+                      </td>
+                      <td style="text-align: center; vertical-align: bottom;">
+                        <div id="bar_x" style="width: 44%; height: 0%; border: 0px solid #307BFA; background-color: var(--bs-primary); display: inline-block;">
+                        </div><br>
+                        <span class="currency"><span id="amount_2">&#8210;&#8210;,&#8210;&#8210;</span>&nbsp;euros</span><br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 50%; text-align: center;">
+                        <span style="position: relative; text-align: center; display: inline-block; margin-top: 12px;">
+                          <span class="input-group">
+                            <button id="button_y_incL" class="btn btn-outline-primary p-1" type="button" onclick="changeAllocation(-10)" style="font-size: 90%;">&nbsp;⬆⬆&nbsp;</button><!--&uarr;-->
+                            <button id="button_y_incS" class="btn btn-outline-secondary p-1" type="button" onclick="changeAllocation(-1)" style="font-size: 90%;">&nbsp;&nbsp;⬆&nbsp;&nbsp;</button>
+                          </span>
+                        </span>
+                      </td>
+                      <td style="width: 50%; text-align: center;">
+                        <span style="position: relative; text-align: center; display: inline-block; margin-top: 12px;">
+                          <span class="input-group">
+                            <button id="button_x_incS" class="btn btn-outline-secondary p-1" type="button" onclick="changeAllocation(+1)" style="font-size: 90%;">&nbsp;&nbsp;⬆&nbsp;&nbsp;</button><!--&darr;-->
+                            <button id="button_x_incL" class="btn btn-outline-primary p-1" type="button" onclick="changeAllocation(+10)" style="font-size: 90%;">&nbsp;⬆⬆&nbsp;</button>
+                          </span>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr style="vertical-align: top;">
+                      <td style="text-align: center;">
+                        <span id="y_amount" style="margin-top: 10px; display: inline-block;">Payment<br><b><span class="today">today</span>,<br>December&nbsp;31, 2099</b></span>
+                      </td>
+                      <td style="text-align: center;">
+                        <span id="x_amount" style="margin-top: 10px; display: inline-block;">Payment<br><b>in 10&nbsp;weeks,<br>December&nbsp;31, 2199</b></span>
+                      </td>
+                    </tr>
+                  </table>
+                </p>
+                <!-- Sum of payments: Robustness check -->
+                <p style="color: black; text-align: center; position: relative; visibility: hidden;">Sum of your payments:<br>
+                  <span id="amount_total" style="color:#307BFA; font-weight: bold"> --.-- </span><span class="currency">&nbsp;€</span>
+                </p>
+                <p id="information_submit" style="display: block; visibility: hidden;">Amount<br><span id="savingsrate_visual_box"><b>currently saved:</b></span><br>
+                  <input id="savings_amount" type="number" step="0.01" min="0" max="9999" style="top: 5px; position: relative; width: 85px; text-align: center; color: #307BFA; font-weight: bold;"></input><br>
+                  <span style="top: 10px; position: relative; display: block;">euros</span><br>
+                </p>
+              </div>
+            </div>
+            <!-- ROW 3 -->
+            <div id="SCB-row-3" style="height: 10%; opacity: 0; transition: all 0.67s ease;">
+              <!-- LEFT COLUMN -->
+              <div style="float: left; width: 20%; height: 100%;"></div>
+              <!-- CENTER COLUMN: HORIZONTAL AXIS LABEL -->
+              <div style="float: left; width: 45%; height: 100%;">
+                <!-- Fixed maximum payments, horizontal axis -->
+                <div id="x_max" style="display: block; width: 250px; height: 0px; color:gray; display: block; border: 0px magenta dashed;">
+                  <div id="x_max_text" style="display: inline-block; width: 100%; margin-left: 0%; text-align: left;">
+                    <span id="x_max_val" class="currency">&euro;0&nbsp;</span><br>
+                    Maximum <span id="info-x-max">payment<br><b>in 10&nbsp;weeks</b></span>
+                  </div>
+                </div>
+                <!-- Real-time updates, horizontal axis -->
+                <div id="amount_x_box" style="display: none; text-align: left; width: 250px; border: 0px magenta dashed; opacity: 0.999;">
+                  <span style="display: inline-block; width: 100%; margin-left: 0%;">
+                    <span class="currency" style="background-color: rgba(255, 255, 255, 0.75);">&euro;<span id="amount_x" class="currency">0</span>&nbsp;&nbsp;</span><br>
+                    <span id="info-x">Payment<br><b>in 10&nbsp;weeks</b></span>
+                  </span>
+                </div>
+              </div>
+              <!-- RIGHT COLUMN -->
+              <div style="float: right; width: 30%; height: 100%; padding-right: 5%;">
+                <div id="fixate" style="display: none; margin-top: 0px;">
+                  <p style="margin-top: -4%; margin-bottom: 3%; ">
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="changeAllocation(0)">
+                      <b>Lock selection</b>
+                    </button>
+                  </p>
+                  <p id="keyboard_keys" class="flexfontsizesmall" style="text-align: center; color: darkgray;">
+                    Lock selection in place<br>
+                    by clicking the plot or the button
+                    <!--Neu laden: <q>N</q>-->
+                  </p>
+                </div>
+                <p id="submit_show" style="visibility: hidden; position: relative; text-align: center; margin-top: 0px; z-index: 99;">
+                  <a href="./interface.html" target="_self"><button id="Confirm_button" class="btn btn-primary"><b>Confirm</b></button></a>
+                </p>
+              </div>
+            </div>  <!-- ROW 3 -->
+          </div>  <!-- "max-absolute-dims" -->
+        </div>  <!-- "16-to-9_inner": force 16-to-9 aspect ratio even if window is super wide -->
+      </div>  <!-- "16-to-9_outer": force 16-to-9 aspect ratio if window is not super wide -->
+    <!--end {% include "SCB/_BR_display_.html" %}-->
+  </div>
+</div>
+
+<!--{% include "SCB/_BR_inputs_.html" %}-->
+<!-- Debug info -->
+<div style="position: fixed; top: 0px; text-align: center; margin: 25px; display: block; font-size: small; width: 100%; justify-content: center; display: flex;">
+  <h4 class="text-primary">
+    Interface used by Gerhardt &amp; Suchy, “Estimating Preference Parameters from Strictly Concave Budget Restrictions,”
+    <a href="https://econtribute.de/RePEc/ajk/ajkdps/ECONtribute_336_2024.pdf" target="_blank">ECONtribute DP&nbsp;336</a> (2024)
+  </h4>
+</div>
+<div style="position: fixed; bottom: 0px; text-align: center; margin-bottom: 15px; display: block; font-size: small; width: 100%; justify-content: center; display: flex;">
+  <div style="width: 100%; max-width: 1280px;">
+    <div class="card-body pb-4" style="background-color: rgba(255, 255, 255, 0.75);">
+       <button id="change-param-vals" class="btn btn-sm btn-warning ps-3 pe-3" style="font-weight: 600;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVals" aria-expanded="false" aria-controls="collapseVals" onclick="toggleButtonText();">
+          Adjust values of experimental parameters
+       </button>
+      </div>
+    <div class="collapse" id="collapseVals">
+      <div class="card card-body bg-warning text-dark" pb-1 pt-2" style="text-align: left;">
+        <table class="table table-sm text-start bg-warning" style="border-color: #edb100;">
+          <tr style="vertical-align: middle;">
+            <th class="ps-0 pb-2" colspan="4">Values set by experimenter</th>
+            <th class="ps-5 pb-2" colspan="2">Choice variables</th>
+          </tr>
+          <tr style="vertical-align: middle;">
+            <td class="col-3 ps-0">Preference type</td>
+            <td class="col-1">
+              <select name="br-cond" id="br-cond" class="form-select form-select-sm" onchange="redrawPlot(); reanimateTimeline(); ">
+                <option value="time" selected>Time</option>
+                <option value="risk">Risk</option>
+              </select>
+            </td>
+            <td class="ps-5">Budget of the BR (<i>m</i>) <span class="text-danger">(≤&nbsp;€100&hairsp;000)</span></td>
+            <td><input type="number" id="br-budget" name="br-budget" class="form-control form-control-sm" onchange="redrawPlot()" value="21" step="0.05" min="0" max="100000"></td>
+            <td class="col-2 ps-5"><code>payment_y</code></td>
+            <td class="col-1"><input type="text" id="payment_y" name="payment_y" class="form-control form-control-sm" readonly></td>
+          </tr>
+          <tr style="vertical-align: middle;">
+          </tr>
+          <tr style="vertical-align: middle;">
+            <td id="br-fed-label" class="ps-0">Front-end delay (<i>t</i>) <span class="text-danger">(in weeks)</span></td>
+            <td id="br-fed-input"><input type="number" id="br-fed" name="br-fed" class="form-control form-control-sm" onchange="redrawPlot(); reanimateTimeline();" value="0" step="1" min="0" max="10"></td>
+            <td id="br-prob-1-label" class="ps-0" style="display: none;">Probability of State&nbsp;1 (<i>q</i>) <span class="text-danger">(in&nbsp;%)</span></td>
+            <td id="br-prob-1-input" style="display: none;"><input type="number" id="br-prob-1" name="br-prob-1" class="form-control form-control-sm" onchange="redrawPlot()" value="50" step="1" min="0" max="100"></td>
+            <td class="col-3 ps-5">Baseline payment 1 (<i>b</i><sub id="br-b-1-label">t</sub>) <span class="text-danger">(≤&nbsp;20% of <i>m</i>)</span></td>
+            <td class="col-1"><input type="number" id="br-b-1" name="br-b-1" class="form-control form-control-sm" onchange="redrawPlot()" min="0" value="1.5" step="0.05"></td>
+            <td class="ps-5"><code>payment_x</code></td>
+            <td><input type="text" id="payment_x" name="payment_x" class="form-control form-control-sm" readonly></td>
+          </tr>
+          <tr style="vertical-align: middle;">
+            <td id="br-delay-label" class="ps-0">Delay between payments (<i>k</i>) <span class="text-danger">(in weeks)</span></td>
+            <td id="br-delay-input"><input type="number" id="br-delay" name="br-delay" class="form-control form-control-sm" onchange="redrawPlot(); reanimateTimeline();" value="10" step="1" min="1" max="11"></td>
+            <td id="br-prob-2-label" class="ps-0" style="display: none;">Probability of State&nbsp;1 (1&#8239;&minus;&#8239;<i>q</i>) <span class="text-danger">(in&nbsp;%)</span></td>
+            <td id="br-prob-2-input" style="display: none;"><input type="number" id="br-prob-2" name="br-prob-2" class="form-control form-control-sm" readonly value="50" step="1" min="0" max="100"></td>
+            <td class="ps-5">Baseline payment 2 (<i>b</i><sub id="br-b-2-label"><i>t</i>+<i>k</i></sub>) <span class="text-danger">(≤&nbsp;20% of <i>m</i>)</span></td>
+            <td><input type="number" id="br-b-2" name="br-b-2" class="form-control form-control-sm" onchange="redrawPlot()" min="0" value="1.5" step="0.05"></td>
+            <!--<td class="ps-5"><code>marginal_interest_left</code></td>
+            <td><input type="text" id="marginal_interest_left" name="marginal_interest_left" class="form-control form-control-sm" readonly></td>-->
+          </tr>
+          <tr style="vertical-align: middle;">
+            <td class="ps-0" colspan="2">
+              Formula of the budget restriction:
+              <span id="br-formula" style="display: inline-block;">
+                <i>c</i><sub><i style="display: inline-block; width: 0px; white-space: nowrap;">t</i></sub><sup>1+<i>z</i></sup> +
+                (1&#8239;/&#8239;<i>R</i>)<sup>1+<i>z</i></sup>&#8239;<i>c</i><sub><span style="display: inline-block; width: 0px; white-space: nowrap;"><i>t</i>+<i>k</i></span></sub><sup>1+<i>z</i></sup> =
+                m<sup>1+<i>z</i></sup>
+              </span>
+            </td>
+            <td class="ps-5">Curvature of the BR (<i>z</i>)</td>
+            <td><input type="number" id="br-curv" name="br-curv" class="form-control form-control-sm" onchange="redrawPlot()" value="0.4" step="0.05"></td>
+            <!--<td class="ps-5"><code>marginal_interest_right</code></td>
+            <td><input type="text" id="marginal_interest_right" name="marginal_interest_right" class="form-control form-control-sm" readonly></td>-->
+          </tr>
+          <tr style="vertical-align: middle;">
+            <td></td>
+            <td></td>
+            <td class="ps-5">Price ratio of the BR (1&#8239;/&#8239;<i>R</i>&nbsp;=&nbsp;<span id="br-R-label"><i>p</i><sub><i>t</i>+<i>k</i></sub>&#8239;/&#8239;<i>p</i><sub><i>t</i></sub></span>)</td>
+            <td><input type="number" id="br-price-ratio" name="br-price-ratio" class="form-control form-control-sm" onchange="redrawPlot()" value="1.05" step="0.001"></td>
+            <td></td>
+            <td><a href="./interface.html" target="_self" class="btn btn-danger btn-sm" style="font-size: small; font-weight: 500;">Reload</a></td>
+          </tr>
+          <!--<tr>
+            <td><tt>controlq_{{ num_Compr }}</tt></td>
+            <td><input type="text" id="controlq_{{ num_Compr }}" name="controlq_{{ num_Compr }}"></td>
+          </tr>-->
+        </table>
+      </div>
+    </div>
+ </div>
+</div>
+<!--end {% include "SCB/_BR_inputs_.html" %}-->
+
+
+<!-- Loading required Highcharts scripts -->
+<script src="https://code.highcharts.com/9.2.1/highcharts.js"></script>
+<script src="https://code.highcharts.com/9.2.1/modules/series-label.js"></script>
+
+<!-- Loading required jQuery scripts -->
+<!-- Note: jQuery can cause Firefox to become very slow -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+var dates = [];
+var date_aux = new Date();
+for (let w = 0; w < 12; w++) {
+  document.getElementById("dateu" + w).innerHTML = date_aux.toISOString().slice(0, 10);
+  document.getElementById("datel" + w).innerHTML = date_aux.toISOString().slice(0, 10);
+  if (w == 0) {
+    document.getElementById("dateu" + w).innerHTML = "Today";
+    document.getElementById("datel" + w).innerHTML = "<span class='today'>Today</span>";
+    document.getElementById("y_amount").innerHTML = "Payment<br><b><span class='today'>today</span>,<br>" + date_aux.toISOString().slice(0, 10) + "</b>";
+  }
+  if (w == 10) {
+    document.getElementById("x_amount").innerHTML = "Payment<br><b>in 10&nbsp;weeks,<br>" + date_aux.toISOString().slice(0, 10) + "</b>";
+  }
+  if (w == 0 | w == 10) {
+    document.getElementById("dateu" + w).style.visibility = "hidden";
+    document.getElementById("datel" + w).style.visibility = "visible";
+  } else {
+    document.getElementById("dateu" + w).style.visibility = "visible";
+    document.getElementById("datel" + w).style.visibility = "hidden";
+  }
+  date_aux.setDate(date_aux.getDate() + 7);
+  dates.push(date_aux);
+}
+
+</script>
+
+<script type="text/javascript">
+
+// Simulate oTree variables
+function IBR_global(pref_type, b_1, b_2, m, R, z, step_size, tick_dist) {
+  // Helper function to calculate c_1
+  function c_1(c_2, m, R, z) {
+    return Math.pow(m ** (1 + z) - Math.pow(c_2 / R, 1 + z), 1 / (1 + z));
+  }
+  // Helper function to calculate c_2
+  function c_2(c_1, m, R, z) {
+    return R * Math.pow(m ** (1 + z) - c_1 ** (1 + z), 1 / (1 + z));
+  }
+  const c_1_max = Math.round(c_1(b_2, m, R, z) * 100) / 100; // Round to 2 decimals
+  const c_2_max = Math.round(c_2(b_1, m, R, z) * 100) / 100;
+  const n = Math.floor((c_2_max - b_2) / step_size); // Number of grid points
+  // Create series for c_2 and c_1
+  const series_c_2 = Array.from({ length: n }, (_, i) =>
+    Math.round((b_2 + i * step_size) * 100) / 100
+  ); // Ascending
+  const series_c_1 = series_c_2.map(c_2 => 
+    Math.round(c_1(c_2, m, R, z) * 100) / 100
+  ); // Descending
+  // Convert the theoretical values to coordinates
+  const b_y = b_1;
+  const b_x = b_2;
+  const y_max = c_1_max;
+  const x_max = c_2_max;
+  var max_payoff = Math.max(x_max, y_max);
+  if (max_payoff < 25) {
+    max_payoff = 25
+  } else if (max_payoff < 50) {
+    max_payoff = 50
+  } else if (max_payoff < 82.5) {
+    max_payoff = 82.5
+  } else if (max_payoff < 100) {
+    max_payoff = 100
+  } else if (max_payoff < 160) {
+    max_payoff = 160
+  } else if (max_payoff < 220) {
+    max_payoff = 220
+  } else if (max_payoff < 280) {
+    max_payoff = 280
+  }
+  max_payoff = Math.max(max_payoff, 25);
+  var num_ticks = Math.ceil(max_payoff / tick_dist) + 1;
+  if (num_ticks > 50) {
+    num_ticks = 50;
+    tick_dist = Math.ceil((Math.ceil(max_payoff / (num_ticks - 1))) / 5) * 5  // Round up to multiple of 5
+  }
+  let tick_positions = Array.from({ length: num_ticks }, (_, i) => tick_dist * i);
+  const series_y = series_c_1;  // Descending
+  const series_x = series_c_2;  // Ascending
+  const series_x_y = series_x.map((x, i) => [x, series_y[i]]);  // Combine x and y series
+  if (b_x > 0) {
+    series_x.unshift(b_x);
+    series_y.unshift(y_max);
+    series_x_y.unshift([b_x, y_max]);
+  }
+  if (pref_type !== 'social') {
+    series_x.unshift(0);
+    series_y.unshift(y_max);
+    series_x_y.unshift([0, y_max]);
+  }
+  series_x.push(x_max);
+  series_y.push(b_y);
+  series_x_y.push([x_max, b_y]);
+  if (b_y > 0) {
+    series_x.push(x_max);
+    series_y.push(0);
+    series_x_y.push([x_max, 0]);
+  }
+  return {
+    budget: m,
+    pRatio: R,
+    curv: z,
+    series_x: series_x,
+    x_max: x_max,
+    series_y: series_y,
+    y_max: y_max,
+    series_x_y: series_x_y,
+    max_payoff: max_payoff,
+    tick_positions: tick_positions,
+  };
+}
+let IBR_default = IBR_global("time", 1.5, 1.5, 21, 1 / 1.05, 0.4, 0.01, 2.5)
+var js_vars = {
+  block: 1,
+  budget: IBR_default.budget,
+  color_treat: 'var(--bs-primary)',
+  curv: IBR_default.curv,
+  delay: 10,
+  FED: 0,
+  max_payoff: IBR_default.max_payoff,
+  pRatio: IBR_default.pRatio,
+  pref_type: "time",
+  prob_one: 50,  // in %
+  rescale: 1 / 15,  // 1 / example_values(player)['budget']
+  series_x: IBR_default.series_x,
+  series_y: IBR_default.series_y,
+  series_x_y: IBR_default.series_x_y,
+  tick_positions: IBR_default.tick_positions,
+  euro_to_pixels: 94.5 / IBR_default.tick_positions.slice(-1)[0],
+};
+if (js_vars.pref_type != "time") {
+  document.getElementById("time-line").style.visibility = "hidden";
+  for (let d = 0; d < 12; d++) {
+    document.getElementById("dateu" + d).style.visibility = "hidden";
+    document.getElementById("datel" + d).style.visibility = "hidden";
+  }
+}
+document.getElementById("16-to-9_outer").style.visibility = "visible";
+
+//{% include "SCB/_BR_plots_.js" %}
+
+// Functions to change the color of a CSS class
+function changeColorClass(className, toColor) {
+  var classElements = document.getElementsByClassName(className);
+  for (i = 0; i < classElements.length; i++) {
+    classElements[i].style.color = toColor;
+  }
+}
+
+function changeBackgroundColorClass(className, toColor) {
+  var classElements = document.getElementsByClassName(className);
+  for (i = 0; i < classElements.length; i++) {
+    classElements[i].style.background = toColor;
+  }
+}
+
+function changeBorderColorClass(className, toColor) {
+  var classElements = document.getElementsByClassName(className);
+  for (i = 0; i < classElements.length; i++) {
+    classElements[i].style.borderColor = toColor;
+  }
+}
+
+// Self-executing function here
+document.addEventListener("DOMContentLoaded", function(event) {
+  // Your code to run since DOM is loaded and ready
+  let test = document.getElementById("max_today");
+  if (test != null) {
+    test.style.backgroundColor = colorTreat;
+    test.style.color = "white";
+  }
+});
+
+// Read in oTree values
+var block = js_vars.block;
+var colorTreat = js_vars.color_treat;
+var color2Treat = "#CDDEFF";
+var budget = js_vars.budget;
+var curv = js_vars.curv;
+var pRatio = js_vars.pRatio;
+var probOne = js_vars.prob_one;
+var seriesX = js_vars.series_x;
+var seriesY = js_vars.series_y;
+var seriesXY = js_vars.series_x_y;
+var maxPayoff = js_vars.max_payoff;
+var seriesXMax = Math.max.apply(Math, seriesX);
+var seriesYMax = Math.max.apply(Math, seriesY);
+var seriesMax = Math.max(seriesXMax, seriesYMax)
+//let basePaymentX = js_vars.base_payment_x;
+//let basePaymentY = js_vars.base_payment_y;
+var seriesIdxMax = seriesX.length - 1;
+var rescale = js_vars.rescale;
+var euroToPixels = js_vars.euro_to_pixels;
+var tickPositions = js_vars.tick_positions;
+
+(function($) {
+  // Hide visible CSS element
+  $.fn.hidden = function() {
+    return this.each(function() {
+      $(this).css("display", "none");
+      $(this).css("visibility", "hidden");
+    });
+  };
+  // Show hidden CSS element
+  $.fn.visible = function() {
+    return this.each(function() {
+      $(this).css("display", "block");
+      $(this).css("visibility", "visible");
+    });
+  };
+}(jQuery));
+
+// Hides the maximum field at axis which should only be present at the beginning.
+// Function takes the argument delay which specifies the number of milliseconds
+// before the event is triggered
+function hideMaxFields(delay) {
+  //document.getElementById('x_max_text').innerHTML = seriesXMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+  document.getElementById('x_max_text').innerHTML = "&euro;" + seriesXMax.toFixed(2);
+  //document.getElementById('y_max').innerHTML = seriesYMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+  document.getElementById('y_max').innerHTML = "&euro;" + seriesYMax.toFixed(2);
+  document.getElementById('x_max_text').style.color = colorTreat;
+  document.getElementById('y_max').style.color = colorTreat;
+  document.getElementById('x_max_text').style.opacity = "50%";
+  document.getElementById('y_max').style.opacity = "50%";
+  setTimeout(function() {
+    $('#x_max').hidden();
+    $('#y_max').hidden();
+  }, delay);
+}
+
+function setcolor(dateC, dateH, point, color, fontWeight) {
+  document.getElementById(dateC).style.color = color;
+  document.getElementById(dateC).style.fontWeight = fontWeight;
+  document.getElementById(point).style.borderColor = color;
+  document.getElementById(dateC).style.visibility = "visible";
+  document.getElementById(dateH).style.visibility = "hidden";
+}
+
+function plotPointX(idx) {
+  return seriesX[idx]
+}
+function plotPointY(idx) {
+  return seriesY[idx]
+}
+
+changeBorderColorClass("timeline", colorTreat);
+
+let test = document.getElementById("today");
+if (test != null) {
+  test.style.backgroundColor = colorTreat;
+  test.style.color = "white";
+}
+document.getElementById("amount_x").style.color = colorTreat;
+document.getElementById("amount_y").style.color = colorTreat;
+document.getElementById("savingsrate_visual_box").style.color = colorTreat;
+document.getElementById("savings_amount").style.color = colorTreat;
+
+// Builds the initial plot with given parameters
+let seriesIdx = Math.round(seriesIdxMax / 2);
+plot(seriesXY, -666, -666, colorTreat, color2Treat, 0, 0);
+// (-666, -666) places the point outside the plot area
+
+changeColorClass("currency", colorTreat);
+// Moved to oTree code and template
+//changeColorClass("date_highlighted", colorTreat);
+//changeColorClass("btn-outline-primary", colorTreat);
+//changeBorderColorClass("btn-outline-primary", colorTreat);
+
+document.getElementById("x_max").style.marginLeft = (euroToPixels * plotPointX(seriesIdxMax) + 2.5).toFixed(2) + "%";
+//document.getElementById("x_max_val").innerHTML = seriesXMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+document.getElementById("x_max_val").innerHTML = "&euro;" + seriesXMax.toFixed(2);
+document.getElementById("y_max").style.top = (107.5 - euroToPixels * plotPointY(0)).toFixed(2) + '%';
+//document.getElementById("y_max_val").innerHTML = seriesYMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+document.getElementById("y_max_val").innerHTML = "&euro;" + seriesYMax.toFixed(2);
+
+// Disable "Enter" key to prevent submitting the form accidentally
+$('html').bind('keypress', function(e) {
+  if(e.keyCode == 13 || e.key == 'Enter') {
+     return false;
+  }
+});
+
+// For online-experiments: disable default keys of Firefox, e.g. automatic search
+//$(window).keypress(function(e) {
+//    e.preventDefault()
+//    // other code
+//});
+
+// TOOLTIP-CUSTOMIZATION: uncomment if you want to add
+// (function (H) {
+//     H.wrap(H.Tooltip.prototype, 'refresh', function (proceed, point, e) {
+//         if (e && e.type !== 'mousemove') {
+//             proceed.call(this, point, e);
+//         }
+//     });
+//     H.addEvent(H.Point.prototype, 'click', function (e) {
+//         e.point.series.chart.tooltip.refresh(e.point, e);
+//
+//     });
+// }(Highcharts));
+
+var chart;
+
+function plot(seriesPlot, pointX, pointY, color, color2, chm, remove) {
+  chart = Highcharts.chart("container", {
+    title: {
+      text: ' ',
+      style: {"color": "#111", "fontSize": "17px", "fontWeight": "bold", "fontFamily": "IBM Plex Sans, Segoe UI, sans-serif"}
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      tickColor: "#e6e6e6", // this is the default GridLine color, see https://api.highcharts.com/highcharts/colorAxis
+      lineColor: "darkgray", // "darkgray",  // to make it disappear, set lineColor to transparent
+      gridLineWidth: 0.5,
+      minRange: seriesXMax,  // defines the minimum range of the axis to be displayed
+      crosshair: {
+        label: {
+          enabled: false
+        }
+      },
+      // conflicts with out minRange option endOnTick: true,
+      showLastLabel: true,
+      startOnTick: true,
+      endOnTick: true,
+      tickPositions: tickPositions,
+        title: {
+        text: "",
+      },
+      labels: {  // omit labels at x-axis - necessary!
+        enabled: false,
+        style: {
+          fontSize: "14px"
+        }
+      },
+      allowDecimals: true
+    },
+    tooltip: {
+      enabled: false  // do not show the tooltip - necessary!
+    },
+    yAxis: {
+        plotLines: [{
+          color: '#cccccc',
+          width: 1,
+          value: chm * plotPointY(seriesIdx),
+          dashStyle: 'solid'
+        }],
+        tickWidth: 1, // We have to use tickWidth since otherwise ticks will not be displayed (on xAxis set by default)
+        tickColor: "#e6e6e6",  // see default GridLine color https://api.highcharts.com/highcharts/colorAxis
+        lineColor: "darkgray",
+        lineWidth: 1,
+        gridLineWidth: 0.5,
+        //gridLineColor: 'gray',
+        minRange: seriesXMax,
+        crosshair: true,
+        title: {
+          text: "",
+          fontSize: "22px"
+        },
+        showLastLabel: true,
+        startOnTick: true,
+        endOnTick:true,
+        tickPositions: tickPositions,
+        labels: {
+          enabled: false
+        }
+    },
+    legend: {
+        enabled: false
+
+    },
+    plotOptions: {
+      scatter: {
+         lineWidth: 1  // draw line connecting the scatter points
+      },
+      series: {
+        animation: false,
+        label: {
+          connectorAllowed: false  // Disable legend located in right-top by default
+        },
+        pointStart: 0,
+      }
+    },
+    series: [
+      {
+        type: 'scatter',  // use 'scatter' instead of 'line' to enable vertcial segments
+        marker: {
+          enabled: true,
+          symbol: 'circle',
+          radius: 4,  // Sets the responsive area around the budget restriction
+          fillColor: 'transparent',  // Mandatory for responsive area: 'transparent'
+          lineColor: 'transparent',  // Mandatory for responsive area: 'transparent'
+          states: {
+            hover: {
+              radius: 4,  // try to pass the radius as a variable to make the graph more flexible
+              fillColor: color,  // when hovering make the dot filled again
+              animation: false,  // Disable animation when redrawing the graph
+            }
+          }
+        },
+        stickyTracking: false,
+        name: " ",  // Remove title from budget restriction
+        data: seriesPlot,
+        color: color,
+        allowPointSelect: true,
+        cursor: 'pointer',
+        leaveCursor: true,
+        point: {
+          events: {
+            click: function () {
+              $('#amount_x').text(((this.x)).toFixed(2));  //.replace('.', ','));
+              $('#amount_y').text(((this.y)).toFixed(2));  //.replace('.', ','));
+              $('#amount_1').text(plotPointY(seriesIdx).toFixed(2));  //.replace('.', ','));
+              $('#amount_2').text(plotPointX(seriesIdx).toFixed(2));  //.replace('.', ','));
+              // $('#amount_total').text(((this.x + this.y)).toFixed(2)).css({'font-weight': 'bold'});
+              $('#payment_y').val(this.y);
+              $('#payment_x').val(this.x);
+              $('#SaveRate').text((1-(this.x / rescale)).toFixed(0)).css({'font-weight': 'bold'});
+              $('#submit').show();  // CHECK
+              $('#save_rate_manual').val((1-(this.x / rescale)).toFixed(0));  // BEWARE -- SEEMS TO WORK BUT DOUBLE-CHECK!
+              let test = document.getElementById("container");
+              if (test != null) {
+                test.id = "container_submit";
+              }
+              document.getElementById("submit_show").style.visibility = "visible";
+              // Calculation for the left-sided / right-sided marginal interest rate; parseFloat necessary to prevent string-concatenation
+              let x2 = plotPointX(seriesIdx).toFixed(2);
+              let y2 = plotPointY(seriesIdx).toFixed(2);
+              let x1 = x2;
+              let y1 = y2;
+              let x3 = x2;
+              let y3 = y2;
+              if (seriesIdx < seriesIdxMax) {
+                x1 = plotPointX(seriesIdx + 1).toFixed(2);
+                y1 = plotPointY(seriesIdx + 1).toFixed(2);
+              }
+              if (seriesIdx > 0) {
+                x3 = plotPointX(seriesIdx - 1).toFixed(2);
+                y3 = plotPointY(seriesIdx - 1).toFixed(2);
+              }
+              let derivative_left  = (y2 - y3) / (x2 - x3);
+              let derivative_right = (y1 - y2) / (x1 - x2);
+              $('#marginal_interest_left' ).val( (-(+derivative_left  + 1)).toFixed(4) || 666 );
+              $('#marginal_interest_right').val( (-(+derivative_right + 1)).toFixed(4) || 666 );
+              let derivative_early_corner =
+                (plotPointY(0).toFixed(2) - plotPointY(1).toFixed(2)) / (plotPointX(0).toFixed(2) - plotPointX(1).toFixed(2));
+              let derivative_late_corner  =
+                (plotPointY(seriesIdxMax - 1).toFixed(2) - plotPointY(seriesIdxMax).toFixed(2)) / (plotPointX(seriesIdxMax - 1).toFixed(2) - plotPointX(seriesIdxMax).toFixed(2));
+              $('#marginal_interest_early_corner').val( -(+derivative_early_corner + 1).toFixed(4) );
+              $('#marginal_interest_late_corner' ).val( -(+derivative_late_corner  + 1).toFixed(4) );
+              document.getElementById("fixate").style.display = "none";
+              document.getElementById("Confirm_button").style.visibility = "visible";
+              plotSubmit(seriesXY, this.x, this.y, colorTreat);
+            },
+            mouseOver: function() {
+              // This function removes the existing point when moving in
+              if (remove === 1) {
+                //plot(seriesPlot, -666, -666, color, color2, 0, 0);
+                plot(seriesXY, -666, -666, colorTreat, color2Treat, 0, 0);
+              }
+              document.getElementById("fixate").style.display = "block";
+              document.getElementById("Confirm_button").style.visibility = "hidden";
+              $('#amount_x_box').visible();
+              $('#amount_y_box').visible();
+              if (this.x != null) {
+                $('#savings_amount').val((seriesXMax - this.x).toFixed(2));
+                $('#payment_x').val((this.x).toFixed(2));
+                $('#payment_y').val((this.y).toFixed(2));
+                $('#amount_x').text((this.x).toFixed(2));  //.replace('.', ','));
+                $('#amount_y').text((this.y).toFixed(2));  //.replace('.', ','));
+                $('#amount_1').text((this.y).toFixed(2));  //.replace('.', ','));
+                $('#amount_2').text((this.x).toFixed(2));  //.replace('.', ','));
+                pointX = this.x;
+                pointY = this.y;
+                seriesIdx = this.index;
+                var pl = [];
+                $.each( chart.xAxis[0].plotLinesAndBands, function(i, v) { pl.push(v.id); } );
+                $.each( pl, function(i, v) { chart.xAxis[0].removePlotLine(v); });
+                $.each( chart.yAxis[0].plotLinesAndBands, function(i, v) { pl.push(v.id); } );
+                $.each( pl, function(i, v) { chart.yAxis[0].removePlotLine(v); });
+                addCrosshair(pointX, pointY);
+                //addTangent(pointX, pointY, js_vars.budget, js_vars.curv, js_vars.pRatio);
+              } else {
+                seriesIdx = Math.round(seriesIdxMax / 2);
+              }
+              $('#seriesIdx').val(seriesIdx);
+              //$('#amount_total').text(((this.x + this.y)).toFixed(2)).css({'font-weight': 'bold'});
+              document.getElementById("amount_x_box").style.marginLeft = (euroToPixels * plotPointX(seriesIdx) + 2.5).toFixed(2) + "%";
+              document.getElementById("amount_y_box").style.top = (107.5 - euroToPixels * plotPointY(seriesIdx)).toFixed(2) + '%';
+              hideMaxFields(1000000);  // delay in milliseconds
+              //document.getElementById('bar_x').style.height = 100 * (pointX / seriesMax) + "%";
+              //document.getElementById('bar_y').style.height = 100 * (pointY / seriesMax) + "%";
+              document.getElementById('bar_x').style.height = 100 * (pointX / maxPayoff) + "%";
+              document.getElementById('bar_y').style.height = 100 * (pointY / maxPayoff) + "%";
+            },
+            // Works but is really slow:
+            //mouseOut: function() {
+            //  remove = 1;
+            //  plot(seriesXY, plotPointX(seriesIdx), plotPointY(seriesIdx), colorTreat, color2Treat, 1, remove);
+            //}
+          }
+        }  // point
+      },
+      {
+        enableMouseTracking: false,  // disables magnetic property
+        name: 'Konsumallokation manuell',
+        data: [{
+          x: pointX,
+          y: pointY,
+          name: "Points2",
+          color: color,
+          marker: {
+            radius: 6.5,
+            symbol: 'circle',
+            lineWidth: 5,
+            fillColor: null,
+            lineColor: color2,
+          }
+        }]
+      }
+    ],  // series
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    },
+    navigation: {
+      buttonOptions: {
+        enabled: false,
+      },
+    },
+    /*chart: {
+      events: {
+        render: function() {
+          if (this.customPlotLine) {
+            this.customPlotLine.destroy()
+            this.customPlotLine = undefined
+          };
+          this.customPlotLine = this.renderer.g('customPlotLine').add();
+          this.renderer.path([['M', 100, 100], ['L', pointX, pointY, 'z']]).attr({
+            fill: 'red',
+            stroke: 'red',
+            'stroke-width': 20,
+          }).add(this.customPlotLine);
+        }
+      },
+    },*/
+  });
+}
+
+// Add tangent to budget restriction at the selected point
+
+// Make crosshairs permanent, https://stackoverflow.com/questions/25148528/highchart-always-show-crosshair
+
+function addCrosshair(x, y) {
+  chart.xAxis[0].addPlotLine({
+    id: 'xPlotLine' + x,
+    value: x,
+    width: 1,
+    color: '#cccccc',
+  });
+  chart.yAxis[0].addPlotLine({
+    id: 'yPlotLine' + y,
+    value: y,
+    width: 1,
+    color: '#cccccc',
+  });
+}
+
+function addTangent(x, y, budget, curv, pRatio) {
+  if (chart.Tangent) {
+    chart.Tangent.destroy();
+    chart.Tangent = undefined;
+  };
+  if (chart.TangentText) {
+    chart.TangentText.destroy();
+    chart.TangentText = undefined;
+  };
+  // BR as c_2(c_1): R * (m**(1+z) - c_1**(1+z))**(1/(1+z))
+  // BR as c_1(c_2): (m**(1+z) - (c_2 / R)**(1+z))**(1/(1+z))
+  // We use the latter, since we put c_1 on the y-axis, and omit the minus sign
+  var slope =
+    1 * (1 / pRatio)**(1 + curv) * (1 + curv) * x**curv *
+    (1 / (1 + curv)) * (budget**(1+curv) - (x / pRatio)**(1+curv))**(1/(1+curv)-1);
+  if (y == 0) {
+    slope = Infinity;
+  } else if (x == 0) {
+    slope = 0;
+  };
+  // Ensure that the tangent always has the same length, independent of its slope
+  let tangentLenth = 120
+  var DeltaX = tangentLenth * Math.sqrt(1 / (1 + slope**2))
+  var tangentBeginX = chart.xAxis[0].toPixels(x) - DeltaX
+  var tangentBeginY = chart.yAxis[0].toPixels(y) - DeltaX * slope
+  var tangentEndX = chart.xAxis[0].toPixels(x) + DeltaX
+  var tangentEndY = chart.yAxis[0].toPixels(y) + DeltaX * slope
+  chart.Tangent = chart.renderer.g('Tangent').add();
+  chart.renderer.path([
+    //"M", chart.xAxis[0].toPixels(x), chart.yAxis[0].toPixels(y), "h100", pathLength="90",
+    "M", tangentBeginX, tangentBeginY, "L", tangentEndX, tangentEndY,
+  ]).attr({
+    "id": "tangent",
+    "stroke-width": 1,
+    stroke: js_vars.color_treat,
+    dashstyle: 'longdash',
+    zIndex: "99",
+    //transform:
+    //  "rotate(" + (Math.tanh(slope) * 90) + "," + chart.xAxis[0].toPixels(x) + "," + chart.yAxis[0].toPixels(y) + ")",
+  }).add(chart.Tangent);
+  chart.TangentText = chart.renderer.g('TangentText').add();
+  chart.renderer.text(
+    "Local exchage rate<br>(later/earlier): " +
+    //(1 / slope).toFixed(3).replace(".", ",").replace("Infinity", "∞"),
+    (1 / slope).toFixed(3).replace("Infinity", "∞"),
+    //"Lokales Austauschverhältnis: " + slope.toFixed(3).replace("Infinity", "∞") +
+    //"<br>(lokale Verzinsung: " + (100 / slope - 100).toFixed(2).replace("Infinity", "∞") + "&#8239;%)",
+    chart.xAxis[0].toPixels(x) + 11, chart.yAxis[0].toPixels(y) - 36,
+  ).css({
+    color: "darkgray",
+    fontFamily: "'IBM Plex Sans', sans-serif",
+    //fontSize: "min(max(7px, min(2.22vh, 1.25vw)), 16px)",  // like .flexfontsize
+    fontSize: "min(min(1.6vh, 0.925vw), 14px)",  // like .flexfontsizesmall
+    lineHeight: "17%",
+    zIndex: "98",
+  }).add(chart.TangentText);
+  chart.TangentText.toFront();
+}
+
+// Defines the Plot after submission is made
+
+function plotSubmit(seriesPlot, pointX, pointY, color) {
+  //document.getElementById('bar_x').style.height = 100 * (plotPointX(seriesIdx) / seriesMax) + "%";
+  //document.getElementById('bar_y').style.height = 100 * (plotPointY(seriesIdx) / seriesMax) + "%";
+  document.getElementById('bar_x').style.height = 100 * (plotPointX(seriesIdx) / maxPayoff) + "%";
+  document.getElementById('bar_y').style.height = 100 * (plotPointY(seriesIdx) / maxPayoff) + "%";
+  Highcharts.chart("container_submit", {
+    title: {
+      text: '',
+      style: {"color": "#848484", "fontSize": "17px", "fontWeight": "bold", "fontFamily": "Segoe UI, sans-serif"},
+    },
+    credits: {
+      enabled: false
+    },
+    noData: {
+      style: {
+        fontSize: "16px",
+        fontWeight: "bold"
+      }
+    },
+    tooltip: {
+      enabled: false,
+      snap: 200
+    },
+    xAxis: {
+      plotLines: [{
+        color: color,
+        width: 1,
+        value: pointX,
+        dashStyle: 'longdashdot',
+        zIndex: 15,
+      }],
+      tickColor: "#e6e6e6",
+      gridLineWidth: 1,
+      minRange: seriesXMax,
+      // defines the minimum range of the axis to be displayed
+      // conflicts with out minRange option endOnTick: true,
+      showLastLabel: true,
+      startOnTick: true,
+      endOnTick: true,
+      tickPositions: tickPositions,  // place ticks only at beginning and end -- here we have to get the maximum
+      title: {
+        text: "",
+      },
+      labels: {
+        enabled: false,
+        style: {
+          fontSize: "14px"
+        }
+      },
+      allowDecimals: true
+    },
+    yAxis: {
+      plotLines: [{
+        color: color,
+        width: 1,
+        value: pointY,
+        dashStyle: 'longdashdot',
+        zIndex: 14,
+      }],
+      tickWidth:1,  // We have to use tickWidth since otherwise they will not be display (on x-Axis, they are set by default
+      tickColor: "#e6e6e6",  // see default GridLine color https://api.highcharts.com/highcharts/colorAxis
+      gridLineWidth: 1,
+      grindLineColor: 'blue',
+      minRange: seriesXMax,
+      showLastLabel: true,
+      startOnTick: true,
+      endOnTick:true,
+      tickPositions: tickPositions,
+      title: {
+        text: "",
+      },
+      labels: {
+        enabled: false,
+        rotation: 0,
+        style: {
+          fontSize: "14px"
+        },
+        allowDecimals: true
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    plotOptions: {
+      series: {
+        marker: {
+          states: {
+            hover: {
+              enabled: false
+            }
+          }
+        },
+        animation: false,
+        label: {
+          connectorAllowed: false
+        },
+        pointStart: 1
+      }
+    },
+    series: [{
+      // we dont want a name name: 'Budgetlinie',
+      name: " ",   // sets the name empty: watch out that we have to add a space to do so
+      data: seriesPlot,
+      color: color,
+      allowPointSelect: true,
+      point: {
+        events: {
+          click: function () {
+            document.getElementById('container_submit').id = 'container';
+            // changes container to the initial one
+            document.getElementById("submit_show").style.visibility = "hidden";
+            //document.getElementById("information_submit").style.visibility = "visible";
+            //document.getElementById("savings_amount").style.visibility = "visible";
+            // IN THE WEB VERSION IT WILL GET VISIBLE $('#DetailedInstructions').visible();
+            plot(seriesXY, -666, -666, colorTreat, color2Treat, 0);
+          }
+        }
+      },
+      zIndex:2
+    }, {
+      name: 'Konsumallokation manuell',
+      data: [{
+        x: pointX,
+        y: pointY,
+        name: "Points2",
+        color: color,
+        marker: {
+          symbol:'circle',
+          radius: 4,
+          lineWidth: 1,
+          lineColor: ''
+        },
+        zIndex: 1  // sets the point behind the series; series zIndex: 2
+      }]
+    }],
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    },
+    navigation: {
+      buttonOptions: {
+        enabled: false
+      }
+    }
+  });
+}
+
+function changeAllocation(numSteps) {
+  if (seriesIdx + numSteps > seriesIdxMax) {
+    seriesIdx = seriesIdxMax;
+  } else if (seriesIdx + numSteps < 0) {
+    seriesIdx = 0;
+  } else {
+    seriesIdx += numSteps;
+  }
+  hideMaxFields(1000000);
+  $('#amount_x_box').visible();
+  $('#amount_y_box').visible();
+  let test = document.getElementById("container_submit");
+  if (test != null) {
+    test.id = "container";
+  }
+  remove = 1;
+  plot(seriesXY, plotPointX(seriesIdx), plotPointY(seriesIdx), colorTreat, color2Treat, 1, remove);
+  if (numSteps == 0) {
+    //plotSubmit(seriesXY, plotPointX(seriesIdx), plotPointY(seriesIdx), colorTreat);
+      // Somehow, this doesn’t work.
+      document.getElementById("submit_show").style.visibility = "visible";
+      document.getElementById("fixate").style.display = "none";
+      document.getElementById("Confirm_button").style.visibility = "visible";
+  } else {
+    document.getElementById("fixate").style.display = "block";
+    document.getElementById("Confirm_button").style.visibility = "hidden";
+  }
+  document.getElementById("amount_x_box").style.marginLeft =
+    (euroToPixels * plotPointX(seriesIdx) + 2.5).toFixed(2) + "%";
+  document.getElementById("amount_y_box").style.top =
+    (107.5 - euroToPixels * plotPointY(seriesIdx)).toFixed(2) + '%';
+  $('#amount_x').text(plotPointX(seriesIdx).toFixed(2));  //.replace('.', ','));
+  $('#amount_y').text(plotPointY(seriesIdx).toFixed(2));  //.replace('.', ','));
+  $('#amount_1').text(plotPointY(seriesIdx).toFixed(2));  //.replace('.', ','));
+  $('#amount_2').text(plotPointX(seriesIdx).toFixed(2));  //.replace('.', ','));
+  $('#savings_amount').val((seriesXMax - plotPointX(seriesIdx)).toFixed(2));
+  $('#save_rate_manual').val((seriesXMax - plotPointX(seriesIdx)).toFixed(2));
+  $('#payment_x').val((plotPointX(seriesIdx)).toFixed(2));
+  $('#payment_y').val((plotPointY(seriesIdx)).toFixed(2));
+  $('#seriesIdx').val(seriesIdx);
+  let x2 = plotPointX(seriesIdx).toFixed(2);
+  let y2 = plotPointY(seriesIdx).toFixed(2);
+  let x1 = x2;
+  let y1 = y2;
+  let x3 = x2;
+  let y3 = y2;
+  if (seriesIdx < seriesIdxMax) {
+    x1 = plotPointX(seriesIdx + 1).toFixed(2);
+    y1 = plotPointY(seriesIdx + 1).toFixed(2);
+  }
+  if (seriesIdx > 0) {
+    x3 = plotPointX(seriesIdx - 1).toFixed(2);
+    y3 = plotPointY(seriesIdx - 1).toFixed(2);
+  }
+  let derivative_left  = (y2 - y3) / (x2 - x3);
+  let derivative_right = (y1 - y2) / (x1 - x2);
+  let derivative_early_corner =
+    (plotPointY(0).toFixed(2) - plotPointY(1).toFixed(2)) / (plotPointX(0).toFixed(2) - plotPointX(1).toFixed(2));
+  let derivative_late_corner  =
+    (plotPointY(seriesIdxMax - 1).toFixed(2) - plotPointY(seriesIdxMax).toFixed(2)) / (plotPointX(seriesIdxMax - 1).toFixed(2) - plotPointX(seriesIdxMax).toFixed(2));
+  addCrosshair(plotPointX(seriesIdx), plotPointY(seriesIdx));
+  //addTangent(plotPointX(seriesIdx), plotPointY(seriesIdx), js_vars.budget, js_vars.curv, js_vars.pRatio);
+  if(numSteps == 0) {
+    let test = document.getElementById("container");
+    if (test != null) {
+      test.id = "container_submit";
+    }
+    plotSubmit(seriesXY, plotPointX(seriesIdx), plotPointY(seriesIdx), colorTreat);
+  };
+  document.getElementById('bar_x').style.height = 100 * (plotPointX(seriesIdx) / maxPayoff) + "%";
+  document.getElementById('bar_y').style.height = 100 * (plotPointY(seriesIdx) / maxPayoff) + "%";
+}
+
+//{% if session.config.pref_type == 'time' %}
+//  {% include "SCB/_Animate_dates_.js" %}
+function animateDates() {
+  var toAnimate = document.getElementsByClassName('animate');
+  setTimeout(function() {
+    toAnimate[0].style.marginTop = "1.75rem";
+    toAnimate[0].style.marginBottom = "-1.75rem";
+    toAnimate[0].style.transform = "scale(4)";
+  }, 500);
+  setTimeout(function() {
+    toAnimate[1].style.marginTop = "1.75rem";
+    toAnimate[1].style.marginBottom = "-1.75rem";
+    toAnimate[1].style.transform = "scale(4)";
+  }, 1500);
+  setTimeout(function() {
+    for (let i = 0; i < toAnimate.length; i++) {
+      toAnimate[i].style.marginTop = "0rem";
+      toAnimate[i].style.marginBottom = "0rem";
+      toAnimate[i].style.transform = "scale(1)";
+    };
+    document.getElementById('SCB-row-2').style.opacity = 1;
+    document.getElementById('SCB-row-3').style.opacity = 1;
+  }, 4500);
+};
+if (js_vars.pref_type == "time") {
+  animateDates();
+} else { //{% else %}
+  document.getElementById('SCB-row-2').style.opacity = 1;
+  document.getElementById('SCB-row-3').style.opacity = 1;
+};
+function reanimateTimeline() {
+  if (js_vars.pref_type == "time") {
+    animateDates();
+  };
+};
+//{% endif %}
+
+//end {% include "SCB/_BR_plots_.js" %}
+
+function redrawPlot() {
+  br_budget = Number(document.getElementById("br-budget").value);
+  br_budget = Math.min(100000, br_budget);
+  document.getElementById("br-budget").value = br_budget;
+  br_b_1 = Number(document.getElementById("br-b-1").value);
+  br_b_1 = Math.max(0, Math.min(0.2 * br_budget, br_b_1));
+  document.getElementById("br-b-1").value = br_b_1;
+  br_b_2 = Number(document.getElementById("br-b-2").value);
+  br_b_2 = Math.max(0, Math.min(0.2 * br_budget, br_b_2));
+  document.getElementById("br-b-2").value = br_b_2;
+  step_size = 0.01;
+  tick_dist = 2.5;
+  if (br_budget > 80) {
+    tick_dist = 5;
+  };
+  if (br_budget > 100) {
+    tick_dist = 10;
+    step_size = 0.1;
+  };
+  if (br_budget > 500) {
+    tick_dist = 25;
+    step_size = 1;
+  };
+  if (br_budget > 5000) {
+    tick_dist = 250;
+    step_size = 10;
+  };
+  br_curv = Number(document.getElementById("br-curv").value);
+  br_fed = Number(document.getElementById("br-fed").value);
+  br_delay = Number(document.getElementById("br-delay").value);
+  br_delay = Math.max(1, Math.min(11 - br_fed, br_delay));
+  document.getElementById("br-delay").value = br_delay;
+  br_prob_one = Number(document.getElementById("br-prob-1").value);
+  br_R = 1 / Number(document.getElementById("br-price-ratio").value);
+  br_pref_type = document.getElementById("br-cond").value;
+  var IBR_current = IBR_global("time", br_b_1, br_b_2, br_budget, br_R, br_curv, step_size, tick_dist);
+  js_vars = {
+    block: 1,
+    budget: IBR_current.budget,
+    color_treat: 'var(--bs-primary)',
+    curv: IBR_current.curv,
+    max_payoff: IBR_current.max_payoff,
+    pRatio: IBR_current.pRatio,
+    prob_one: br_prob_one,
+    pref_type: br_pref_type,
+    rescale: 1 / 15,  // 1 / example_values(player)['budget']
+    series_x: IBR_current.series_x,
+    series_y: IBR_current.series_y,
+    series_x_y: IBR_current.series_x_y,
+    tick_positions: IBR_current.tick_positions,
+    euro_to_pixels: 94.5 /  IBR_current.tick_positions.slice(-1)[0],
+  };
+  br_formula_time =
+    "<i>c</i><sub><i style='display: inline-block; width: 0px; white-space: nowrap;'>t</i></sub><sup>1+<i>z</i></sup> + " +
+    "(1&#8239;/&#8239;<i>R</i>)<sup>1+<i>z</i></sup>&#8239;" +
+    "<i>c</i><sub><span style='display: inline-block; width: 0px; white-space: nowrap;'><i>t</i>+<i>k</i></span></sub><sup>1+<i>z</i></sup> = " +
+    "m<sup>1+<i>z</i></sup>";
+  br_formula_risk =
+    "<i>p</i><sub><span style='display: inline-block; width: 0px; white-space: nowrap;'>1</span></sub><sup>1+<i>z</i></sup>&#8239;" +
+    "<i>c</i><sub><span style='display: inline-block; width: 0px; white-space: nowrap;'>1</span></sub><sup>1+<i>z</i></sup> + " +
+    "<i>p</i><sub><span style='display: inline-block; width: 0px; white-space: nowrap;'>2</span></sub><sup>1+<i>z</i></sup>&#8239;" +
+    "<i>c</i><sub><span style='display: inline-block; width: 0px; white-space: nowrap;'>2</span></sub><sup>1+<i>z</i></sup> = " +
+    "m<sup>1+<i>z</i></sup>";
+  if (js_vars.pref_type == "time") {
+    for (let d = 0; d < 12; d++) {
+      document.getElementById("dateu" + d).style.visibility = "visible";
+      document.getElementById("datel" + d).style.visibility = "visible";
+    }
+    document.getElementById("time-line").style.visibility = "visible";
+    document.getElementById("br-delay-input").style.display = "";
+    document.getElementById("br-delay-label").style.display = "";
+    document.getElementById("br-fed-input").style.display = "";
+    document.getElementById("br-fed-label").style.display = "";
+    document.getElementById("br-prob-1-input").style.display = "none";
+    document.getElementById("br-prob-1-label").style.display = "none";
+    document.getElementById("br-prob-2-input").style.display = "none";
+    document.getElementById("br-prob-2-label").style.display = "none";
+    document.getElementById("br-formula").innerHTML = br_formula_time;
+    document.getElementById("br-b-1-label").innerHTML = "<i>t</i>";
+    document.getElementById("br-b-2-label").innerHTML = "<i>t</i>+<i>k</i>";
+    document.getElementById("br-R-label").innerHTML = "<i>p</i><sub><i>t</i>+<i>k</i></sub>&#8239;/&#8239;<i>p</i><sub><i>t</i></sub>";
+  } else {
+    for (let d = 0; d < 12; d++) {
+      document.getElementById("dateu" + d).style.visibility = "hidden";
+      document.getElementById("datel" + d).style.visibility = "hidden";
+    }
+    document.getElementById("time-line").style.visibility = "hidden";
+    document.getElementById("br-delay-input").style.display = "none";
+    document.getElementById("br-delay-label").style.display = "none";
+    document.getElementById("br-fed-input").style.display = "none";
+    document.getElementById("br-fed-label").style.display = "none";
+    document.getElementById("br-prob-1-input").style.display = "";
+    document.getElementById("br-prob-1-label").style.display = "";
+    document.getElementById("br-prob-2-input").style.display = "";
+    document.getElementById("br-prob-2-label").style.display = "";
+    document.getElementById("br-formula").innerHTML = br_formula_risk;
+    document.getElementById("br-b-1-label").innerHTML = "1";
+    document.getElementById("br-b-2-label").innerHTML = "2";
+    document.getElementById("br-R-label").innerHTML = "<i>p</i><sub>2</sub>&#8239;/&#8239;<i>p</i><sub>1</sub>";
+  }
+  document.getElementById("16-to-9_outer").style.visibility = "visible";
+  // Read in oTree values
+  block = js_vars.block;
+  colorTreat = js_vars.color_treat;
+  color2Treat = "#CDDEFF";
+  budget = js_vars.budget;
+  curv = js_vars.curv;
+  pRatio = js_vars.pRatio;
+  seriesX = js_vars.series_x;
+  seriesY = js_vars.series_y;
+  seriesXY = js_vars.series_x_y;
+  maxPayoff = js_vars.max_payoff;
+  seriesXMax = Math.max.apply(Math, seriesX);
+  seriesYMax = Math.max.apply(Math, seriesY);
+  seriesMax = Math.max(seriesXMax, seriesYMax)
+  //basePaymentX = js_vars.base_payment_x;
+  //basePaymentY = js_vars.base_payment_y;
+  seriesIdxMax = seriesX.length - 1;
+  //let step_size = js_vars.step_size;
+  rescale = js_vars.rescale;
+  euroToPixels = js_vars.euro_to_pixels;
+  tickPositions = js_vars.tick_positions;
+  document.getElementById("amount_x_box").style.display = "none";
+  document.getElementById("amount_y_box").style.display = "none";
+  plot(seriesXY, -666, -666, colorTreat, color2Treat, 0, 0);
+  // (-666, -666) places the point outside the plot area
+  document.getElementById("x_max").style.marginLeft = (euroToPixels * plotPointX(seriesIdxMax) + 2.5).toFixed(2) + "%";
+  if (document.getElementById('x_max_val') != null) {
+    //document.getElementById("x_max_val").innerHTML = seriesXMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+    document.getElementById("x_max_val").innerHTML = "&euro;" + seriesXMax.toFixed(2);
+  } else {
+    //document.getElementById("x_max_text").innerHTML = seriesXMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+    document.getElementById("x_max_text").innerHTML = "&euro;" + seriesXMax.toFixed(2);
+  }
+  document.getElementById("y_max").style.top = (107.5 - euroToPixels * plotPointY(0)).toFixed(2) + '%';
+  if (document.getElementById('y_max_val') != null) {
+    document.getElementById("y_max_val").innerHTML = seriesYMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+  } else {
+    document.getElementById("y_max").innerHTML = seriesYMax.toFixed(2).replace('.', ',') + "&nbsp;&euro;";
+  };
+  date_aux = new Date();
+  if (js_vars.pref_type == "time") {
+    for (let w = 0; w < 12; w++) {
+      if (w == br_fed | w == br_fed + br_delay) {
+        document.getElementById("dateu" + w).style.visibility = "hidden";
+        document.getElementById("datel" + w).style.visibility = "visible";
+        document.getElementById("datel" + w).classList.add("animate");
+        document.getElementById("point" + w).classList.remove("date_regular");
+        document.getElementById("point" + w).classList.add("date_highlighted");
+      } else {
+        document.getElementById("dateu" + w).style.visibility = "visible";
+        document.getElementById("datel" + w).style.visibility = "hidden";
+        document.getElementById("datel" + w).classList.remove("animate");
+        document.getElementById("point" + w).classList.remove("date_highlighted");
+        document.getElementById("point" + w).classList.add("date_regular");
+      }
+      if (w == br_fed) {
+        if (br_fed == 0) {
+          var yHTML = "<span class='today'>today</span>";
+        } else if (br_fed == 1) {
+          var yHTML = "in " + br_fed + "&nbsp;week";
+        } else {
+          var yHTML = "in " + br_fed + "&nbsp;weeks";
+        }
+        document.getElementById("y_amount").innerHTML = "Payment<br><b>" + yHTML + ",<br>" + date_aux.toISOString().slice(0, 10) + "</b>";
+        if (document.getElementById("info-y") != null) {
+          document.getElementById("info-y").innerHTML = "Payment<br><b>" + yHTML + "</b>";
+        }
+        if (document.getElementById("info-y-max") != null) {
+          document.getElementById("info-y-max").innerHTML = "payment<br><b>" + yHTML + "</b>";
+        }
+      }
+      if (w == br_fed + br_delay) {
+        if (w == 1) {
+          week_s = "week"
+        } else {
+          week_s = "weeks"
+        }
+        document.getElementById("x_amount").innerHTML = "Payment<br><b>in " + (br_fed + br_delay) + "&nbsp;" + week_s + ",<br>" + date_aux.toISOString().slice(0, 10) + "</b>";
+        if (document.getElementById("info-x") != null) {
+          document.getElementById("info-x").innerHTML = "Payment<br><b>in " + (br_fed + br_delay) + "&nbsp;" + week_s + "</b>";
+        }
+        if (document.getElementById("info-x-max") != null) {
+          document.getElementById("info-x-max").innerHTML = "payment<br><b>in " + (br_fed + br_delay) + "&nbsp;" + week_s + "</b>";
+        }
+      }
+      date_aux.setDate(date_aux.getDate() + 7);
+      dates.push(date_aux);
+    };
+  } else {
+    document.getElementById("y_amount").innerHTML = "Payment&nbsp;1 with<br><b>" + br_prob_one + "%&nbsp;probability</b>";
+    if (document.getElementById("info-y") != null) {
+      document.getElementById("info-y").innerHTML = "Payment&nbsp;1 with<br><b>" + br_prob_one + "%&nbsp;probability</b>";
+    }
+    if (document.getElementById("info-y-max") != null) {
+      document.getElementById("info-y-max").innerHTML = "payment&nbsp;1 with<br><b>" + br_prob_one + "%&nbsp;probability</b>";
+    }
+    document.getElementById("br-prob-2").value = 100 - br_prob_one;
+    document.getElementById("x_amount").innerHTML = "Payment&nbsp;2 with<br><b>" + (100 - br_prob_one) + "%&nbsp;probability</b>";
+    if (document.getElementById("info-x") != null) {
+      document.getElementById("info-x").innerHTML = "Payment&nbsp;2 with<br><b>" + (100 - br_prob_one) + "%&nbsp;probability</b>";
+    }
+    if (document.getElementById("info-x-max") != null) {
+      document.getElementById("info-x-max").innerHTML = "payment&nbsp;2 with<br><b>" + (100 - br_prob_one) + "%&nbsp;probability</b>";
+    }
+  };
+};
+
+</script>
+
+<script>
+
+const btnTextShow = "Adjust values of experimental parameters";
+const btnTextHide = "Hide experimental parameters";
+var btnText = btnTextShow;
+function toggleButtonText() {
+  if (btnText == btnTextHide) {
+    btnText = btnTextShow;
+    //document.getElementById("change-param-vals").className = "btn btn-warning btn-sm fw-bold";
+  } else {
+    btnText = btnTextHide;
+    //document.getElementById("change-param-vals").className = "btn btn-outline-warning btn-sm fw-bold";
+  };
+  document.getElementById("change-param-vals").innerHTML = btnText;
+  document.getElementById("change-param-vals").blur();
+};
+
+</script>
+
+  
+</body>
+
+
+</html>
